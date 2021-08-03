@@ -1,1 +1,3 @@
+#Multiroot
 Use of GSL for multiroot finding.  Example with Rosenbrook equations.  From https://www.gnu.org/software/gsl/doc/html/multiroots.html
+Use NuGet in VS 2017 to add GSL include directories for headers and lib in .vcxcproj file
