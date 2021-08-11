@@ -1,0 +1,3 @@
+PyBind 
+Example of incorporating Python code in C++.  Example runs Airy function from scipy module
+Uses Python 3.9 - see vcxprof file for library include (Python39.lib) and include directories.
