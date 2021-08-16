@@ -1,5 +1,3 @@
-
-//
 #include <gsl/gsl_vector.h>
 #include <gsl/gsl_multiroots.h>
 #include <stdlib.h>
@@ -12,20 +10,20 @@ struct rparams
     double b;
 };
 
-int rosenbrock_f(const gsl_vector * x, void *params,
+int rosenbrock_f(const gsl_vector * coords, void *params,
     gsl_vector * f)
 {
     double a = ((struct rparams *) params)->a;
     double b = ((struct rparams *) params)->b;
 
-    const double x0 = gsl_vector_get(x, 0);
-    const double x1 = gsl_vector_get(x, 1);
+    const double x = gsl_vector_get(coords, 0);
+    const double y = gsl_vector_get(coords, 1);
 
-    const double y0 = a * (1 - x0);
-    const double y1 = b * (x1 - x0 * x0);
+    const double f1 = a * (1 - x);
+    const double f2 = b * (y - x * x);
 
-    gsl_vector_set(f, 0, y0);
-    gsl_vector_set(f, 1, y1);
+    gsl_vector_set(f, 0, f1);
+    gsl_vector_set(f, 1, f2);
 
     return GSL_SUCCESS;
 }
@@ -35,10 +33,10 @@ void  print_state(size_t iter, gsl_multiroot_fsolver * s)
     printf("iter = %3u x = % .3f y = % .3f "
         "f1(x,y) = % .3e f2(x,y) % .3e\n",
         iter,
-        gsl_vector_get(s->x, 0),
-        gsl_vector_get(s->x, 1),
-        gsl_vector_get(s->f, 0),
-        gsl_vector_get(s->f, 1));
+        gsl_vector_get(s->x, 0), //x
+        gsl_vector_get(s->x, 1), //y
+        gsl_vector_get(s->f, 0), //f1
+        gsl_vector_get(s->f, 1)); //f2
 }
 
 int main()
@@ -54,15 +52,15 @@ int main()
     struct rparams p = { 1.0, 10.0 };
     gsl_multiroot_function f = { &rosenbrock_f, n, &p };
 
-    double x_init[2] = { -10.0, -5.0 };
-    gsl_vector *x = gsl_vector_alloc(n);
+    double init_coords[2] = { -10.0, -5.0 };
+    gsl_vector *coords = gsl_vector_alloc(n);
 
-    gsl_vector_set(x, 0, x_init[0]);
-    gsl_vector_set(x, 1, x_init[1]);
+    gsl_vector_set(coords, 0, init_coords[0]);
+    gsl_vector_set(coords, 1, init_coords[1]);
 
     T = gsl_multiroot_fsolver_dnewton;
     s = gsl_multiroot_fsolver_alloc(T, 2);
-    gsl_multiroot_fsolver_set(s, &f, x);
+    gsl_multiroot_fsolver_set(s, &f, coords);
 
     print_state(iter, s);
 
@@ -82,8 +80,6 @@ int main()
 
     printf("status = %s\n", gsl_strerror(status));
     gsl_multiroot_fsolver_free(s);
-    gsl_vector_free(x);
+    gsl_vector_free(coords);
     return 0;
 }
-
-
