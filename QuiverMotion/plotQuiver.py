@@ -18,12 +18,11 @@ def laser(t):
 
 E0 = 0.5
 w=0.057
-t0=np.pi/6
+t0=0.01*2*np.pi/w
 Up = E0*E0/4/w/w
-t = np.arange(0,10*np.pi/w,0.1)   # start,stop,step
+t = np.arange(-2*np.pi/w,5*np.pi/w,0.1)   # start,stop,step
 z = z_func1(t,E0,w,t0)
 v=v_func1(t,E0,w,t0)
-
 
 plt.plot(t,z,'r')
 plt.plot(t,0.5*v*v,'b')
