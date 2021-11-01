@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="SQL Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="SQL">
+      <UniqueIdentifier>{ec3aeb7d-97fb-4543-a09e-94f3a02abefe}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="SQLiteImplentation.cpp" />
+    <ClCompile Include="Source\Backup.cpp">
+      <Filter>SQL Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Column.cpp">
+      <Filter>SQL Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Database.cpp">
+      <Filter>SQL Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Exception.cpp">
+      <Filter>SQL Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Savepoint.cpp">
+      <Filter>SQL Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Statement.cpp">
+      <Filter>SQL Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Transaction.cpp">
+      <Filter>SQL Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\sqlite3.c">
+      <Filter>SQL Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="SQL\SQLScript.sql">
+      <Filter>SQL</Filter>
+    </None>
+  </ItemGroup>
+</Project>
