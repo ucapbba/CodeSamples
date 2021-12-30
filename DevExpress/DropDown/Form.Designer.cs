@@ -31,8 +31,9 @@
             this.textEdit1 = new DevExpress.XtraEditors.TextEdit();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.colMark = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colValue = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colMark = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colCombo = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
@@ -61,19 +62,19 @@
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.True;
             this.gridView1.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.True;
-            this.gridView1.OptionsBehavior.EditingMode = DevExpress.XtraGrid.Views.Grid.GridEditingMode.EditForm;
+            this.gridView1.OptionsBehavior.EditingMode = DevExpress.XtraGrid.Views.Grid.GridEditingMode.Default;
             this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.colValue,this.colMark });
+            this.colValue,this.colMark,this.colCombo });
             // 
-            // colMark
+            // colParam
             // 
-            this.colMark.FieldName = "Mark";
-            this.colMark.MinWidth = 21;
-            this.colMark.Name = "Mark";
-            this.colMark.OptionsEditForm.UseEditorColRowSpan = false;
-            this.colMark.Visible = true;
-            this.colMark.VisibleIndex = 0;
-            this.colMark.Width = 81;       
+            this.colCombo.FieldName = "Combo";
+            this.colCombo.MinWidth = 21;
+            this.colCombo.Name = "Combo";
+            this.colCombo.OptionsEditForm.UseEditorColRowSpan = false;
+            this.colCombo.Visible = true;
+            this.colCombo.VisibleIndex = 0;
+            this.colCombo.Width = 81;
             // 
             // colParam
             // 
@@ -84,6 +85,17 @@
             this.colValue.Visible = true;
             this.colValue.VisibleIndex = 0;
             this.colValue.Width = 81;
+            // 
+            // colMark
+            // 
+            this.colMark.FieldName = "Mark";
+            this.colMark.MinWidth = 21;
+            this.colMark.Name = "Mark";
+            this.colMark.OptionsEditForm.UseEditorColRowSpan = false;
+            this.colMark.Visible = true;
+            this.colMark.VisibleIndex = 0;
+            this.colMark.Width = 81;       
+      
             // 
             // Form
             // 
@@ -108,5 +120,6 @@
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
         private DevExpress.XtraGrid.Columns.GridColumn colValue;
         private DevExpress.XtraGrid.Columns.GridColumn colMark;
+        private DevExpress.XtraGrid.Columns.GridColumn colCombo;
     }
 }
