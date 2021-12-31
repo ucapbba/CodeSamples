@@ -31,9 +31,10 @@
             this.textEdit1 = new DevExpress.XtraEditors.TextEdit();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.colValue = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colMark = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colCombo = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Param = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.Mark = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.ComboStatic = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.ComboDB = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
@@ -58,44 +59,54 @@
             // 
             // gridView1
             // 
+            this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.Param,
+            this.Mark,
+            this.ComboStatic,this.ComboDB});
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.True;
             this.gridView1.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.True;
-            this.gridView1.OptionsBehavior.EditingMode = DevExpress.XtraGrid.Views.Grid.GridEditingMode.Default;
-            this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.colValue,this.colMark,this.colCombo });
             // 
-            // colParam
+            // Param
             // 
-            this.colCombo.FieldName = "Combo";
-            this.colCombo.MinWidth = 21;
-            this.colCombo.Name = "Combo";
-            this.colCombo.OptionsEditForm.UseEditorColRowSpan = false;
-            this.colCombo.Visible = true;
-            this.colCombo.VisibleIndex = 0;
-            this.colCombo.Width = 81;
+            this.Param.FieldName = "Param";
+            this.Param.MinWidth = 21;
+            this.Param.Name = "Param";
+            this.Param.OptionsEditForm.UseEditorColRowSpan = false;
+            this.Param.Visible = true;
+            this.Param.VisibleIndex = 0;
+            this.Param.Width = 81;
             // 
-            // colParam
+            // Mark
             // 
-            this.colValue.FieldName = "Param";
-            this.colValue.MinWidth = 21;
-            this.colValue.Name = "Param";
-            this.colValue.OptionsEditForm.UseEditorColRowSpan = false;
-            this.colValue.Visible = true;
-            this.colValue.VisibleIndex = 0;
-            this.colValue.Width = 81;
+            this.Mark.FieldName = "Mark";
+            this.Mark.MinWidth = 21;
+            this.Mark.Name = "Mark";
+            this.Mark.OptionsEditForm.UseEditorColRowSpan = false;
+            this.Mark.Visible = true;
+            this.Mark.VisibleIndex = 1;
+            this.Mark.Width = 81;
             // 
-            // colMark
+            // Combo - default values
             // 
-            this.colMark.FieldName = "Mark";
-            this.colMark.MinWidth = 21;
-            this.colMark.Name = "Mark";
-            this.colMark.OptionsEditForm.UseEditorColRowSpan = false;
-            this.colMark.Visible = true;
-            this.colMark.VisibleIndex = 0;
-            this.colMark.Width = 81;       
-      
+            this.ComboStatic.FieldName = "ComboStatic";
+            this.ComboStatic.MinWidth = 21;
+            this.ComboStatic.Name = "ComboStatic";
+            this.ComboStatic.OptionsEditForm.UseEditorColRowSpan = false;
+            this.ComboStatic.Visible = true;
+            this.ComboStatic.VisibleIndex = 2;
+            this.ComboStatic.Width = 81;
+            // 
+            // ComboDB
+            // 
+            this.ComboDB.FieldName = "ComboDB";
+            this.ComboDB.MinWidth = 21;
+            this.ComboDB.Name = "ComboDB";
+            this.ComboDB.OptionsEditForm.UseEditorColRowSpan = false;
+            this.ComboDB.Visible = true;
+            this.ComboDB.VisibleIndex = 2;
+            this.ComboDB.Width = 81;
             // 
             // Form
             // 
@@ -118,8 +129,9 @@
         private DevExpress.XtraEditors.TextEdit textEdit1;
         private DevExpress.XtraGrid.GridControl gridControl1;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
-        private DevExpress.XtraGrid.Columns.GridColumn colValue;
-        private DevExpress.XtraGrid.Columns.GridColumn colMark;
-        private DevExpress.XtraGrid.Columns.GridColumn colCombo;
+        private DevExpress.XtraGrid.Columns.GridColumn Param;
+        private DevExpress.XtraGrid.Columns.GridColumn Mark;
+        private DevExpress.XtraGrid.Columns.GridColumn ComboStatic;
+        private DevExpress.XtraGrid.Columns.GridColumn ComboDB;
     }
 }
