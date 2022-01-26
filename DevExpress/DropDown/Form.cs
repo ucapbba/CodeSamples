@@ -90,5 +90,10 @@ namespace DropDown
         {
 
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.label2.Text = "26/01/2022";
+        }
     }
 }

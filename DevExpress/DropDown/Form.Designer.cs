@@ -35,6 +35,9 @@
             this.Mark = new DevExpress.XtraGrid.Columns.GridColumn();
             this.ComboStatic = new DevExpress.XtraGrid.Columns.GridColumn();
             this.ComboDB = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.textEdit1.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
@@ -62,7 +65,8 @@
             this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
             this.Param,
             this.Mark,
-            this.ComboStatic,this.ComboDB});
+            this.ComboStatic,
+            this.ComboDB});
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.True;
@@ -88,7 +92,7 @@
             this.Mark.VisibleIndex = 1;
             this.Mark.Width = 81;
             // 
-            // Combo - default values
+            // ComboStatic
             // 
             this.ComboStatic.FieldName = "ComboStatic";
             this.ComboStatic.MinWidth = 21;
@@ -105,14 +109,45 @@
             this.ComboDB.Name = "ComboDB";
             this.ComboDB.OptionsEditForm.UseEditorColRowSpan = false;
             this.ComboDB.Visible = true;
-            this.ComboDB.VisibleIndex = 2;
+            this.ComboDB.VisibleIndex = 3;
             this.ComboDB.Width = 81;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(239, 31);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(89, 13);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "Date of last run :";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(345, 31);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(63, 13);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "26/12/2022";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(242, 1);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(144, 27);
+            this.button1.TabIndex = 4;
+            this.button1.Text = "Update Date";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(722, 422);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.gridControl1);
             this.Controls.Add(this.textEdit1);
             this.Name = "Form";
@@ -121,6 +156,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -133,5 +169,8 @@
         private DevExpress.XtraGrid.Columns.GridColumn Mark;
         private DevExpress.XtraGrid.Columns.GridColumn ComboStatic;
         private DevExpress.XtraGrid.Columns.GridColumn ComboDB;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button button1;
     }
 }
