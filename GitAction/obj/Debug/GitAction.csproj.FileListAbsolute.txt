@@ -1,8 +1,0 @@
-C:\GIT\CodeSamples\GitAction\bin\Debug\GitAction.exe.config
-C:\GIT\CodeSamples\GitAction\bin\Debug\GitAction.exe
-C:\GIT\CodeSamples\GitAction\bin\Debug\GitAction.pdb
-C:\GIT\CodeSamples\GitAction\obj\Debug\GitAction.csprojAssemblyReference.cache
-C:\GIT\CodeSamples\GitAction\obj\Debug\GitAction.csproj.CoreCompileInputs.cache
-C:\GIT\CodeSamples\GitAction\obj\Debug\GitAction.exe
-C:\GIT\CodeSamples\GitAction\obj\Debug\GitAction.pdb
-C:\GIT\CodeSamples\GitAction\obj\Debug\GitVersionInformation.g.cs
