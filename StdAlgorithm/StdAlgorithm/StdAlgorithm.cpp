@@ -20,6 +20,10 @@ int main()
 
 	std::adjacent_difference(outVector.begin(), outVector.end(), outVector.begin(), std::plus<double>()); //sums pairs 
 	std::adjacent_difference(outVector.begin(), outVector.end(), outVector.begin()); //diff of pairs 
+	
+	std::transform(outVector.begin(), outVector.end(), outVector.begin(), outVector.begin(), std::multiplies<double>()); //multiply of pairs 
+	double outVecSum = std::accumulate(outVector.begin() + 1, outVector.end(), 0.);
+
     std::cout << "Hello World!\n";
 }
 
