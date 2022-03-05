@@ -13,5 +13,6 @@ namespace Core
 		m_XPos += deltaX;
 		m_YPos += deltaY;
 		std::cout << "Moved " << m_Name << " to (" << m_XPos << ", " << m_YPos << ")." << std::endl;
+		std::cout << "Dynamically linked baby" << std::endl;
 	}
 }

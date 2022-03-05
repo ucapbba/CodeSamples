@@ -1,4 +1,4 @@
-
+#include "pch.h"
 //Entity.cpp
 #include "Entity.h"
 namespace CLI

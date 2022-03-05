@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.1684
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = ".NetConsoleApp1", ".NetConsole\.NetConsoleApp1.csproj", "{D6F0E1AF-511B-411B-8F9A-4FFBF2A5F37A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp1", ".NetConsole\ConsoleApp1.csproj", "{D6F0E1AF-511B-411B-8F9A-4FFBF2A5F37A}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Core", "Core\Core.vcxproj.vcxproj", "{ACEBD2A7-9D32-4652-8976-D9B40021B38C}"
 EndProject
@@ -21,8 +21,8 @@ Global
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{D6F0E1AF-511B-411B-8F9A-4FFBF2A5F37A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D6F0E1AF-511B-411B-8F9A-4FFBF2A5F37A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D6F0E1AF-511B-411B-8F9A-4FFBF2A5F37A}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{D6F0E1AF-511B-411B-8F9A-4FFBF2A5F37A}.Debug|x64.Build.0 = Debug|Any CPU
+		{D6F0E1AF-511B-411B-8F9A-4FFBF2A5F37A}.Debug|x64.ActiveCfg = Release|Any CPU
+		{D6F0E1AF-511B-411B-8F9A-4FFBF2A5F37A}.Debug|x64.Build.0 = Release|Any CPU
 		{D6F0E1AF-511B-411B-8F9A-4FFBF2A5F37A}.Debug|x86.ActiveCfg = Debug|Any CPU
 		{D6F0E1AF-511B-411B-8F9A-4FFBF2A5F37A}.Debug|x86.Build.0 = Debug|Any CPU
 		{D6F0E1AF-511B-411B-8F9A-4FFBF2A5F37A}.Release|Any CPU.ActiveCfg = Release|Any CPU
