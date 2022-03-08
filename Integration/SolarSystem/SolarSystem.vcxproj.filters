@@ -10,9 +10,9 @@
     <ClCompile Include="SolarSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <ClInclude Include="Point_Type.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Point_Type.h" />
+    <None Include="packages.config" />
   </ItemGroup>
 </Project>

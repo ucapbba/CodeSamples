@@ -10,9 +10,9 @@
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <ClInclude Include="NotImplemented.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="NotImplemented.h" />
+    <None Include="packages.config" />
   </ItemGroup>
 </Project>
