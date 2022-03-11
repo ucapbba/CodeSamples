@@ -11,6 +11,8 @@ import plotly.graph_objects as go
 from plotly import __version__
 from plotly.offline import download_plotlyjs, init_notebook_mode, plot, iplot
 import plotly.io as pio
+from pandas.plotting import scatter_matrix
+import matplotlib.pyplot as plt
 
 import datetime
 from datetime import date
@@ -28,6 +30,8 @@ fig.add_trace(go.Scatter(
                 name="EUR/USD",
                 line_color='orange'))'''
 
+#remove NDs from array
+rates.drop(rates[rates['GBPUSD'] == 'ND'].index, inplace = True)
 fig.add_trace(go.Scatter(
                 x=rates['Time Series'],
                 y=rates['GBPUSD'],
@@ -36,33 +40,17 @@ fig.add_trace(go.Scatter(
 
 
 fig.update_layout(title_text="Daily Exchange Rates (2000 - 2019)")
-#fig.show()
+fig.show()
 
-def generate_dates(numdays):
-    #Get todays date and all number of numdays previous and convert them to a string in Year-Month-Day Format
-    base = datetime.datetime.today()
-    date_list = [(base - datetime.timedelta(days=x)).strftime("%Y-%m-%d") for x in range(0, numdays)]
-    return date_list
-
-
-rates_clean = rates._get_numeric_data()
-years = 20
-dates = generate_dates(numdays=365*years)
-print("Dates Sample: ", dates[0:10])
+rates[rates!='ND']
 print(rates.iloc[0])
 print(rates.iloc[0][3])
 
-
-
-datescunt = rates["Time Series"]
+dates = rates["Time Series"]
 GBPUSD= rates["GBPUSD"]
+plt.plot(dates,GBPUSD)
+plt.show()
 
-GBPUSDcleaned = [ x for x in GBPUSD if x.isdigit() ]
-rates[rates["Time Series"].apply(lambda x: x.isnumeric())]
-print(GBPUSD)
 
-for i,j in rates.iterrows():
-    print(i)
-    print(j[2])
 
 
