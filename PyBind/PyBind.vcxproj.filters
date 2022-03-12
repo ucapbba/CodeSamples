@@ -9,7 +9,4 @@
   <ItemGroup>
     <ClCompile Include="PyBind.cpp" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
 </Project>

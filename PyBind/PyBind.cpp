@@ -2,15 +2,19 @@
 //
 
 #include <iostream>
-#include "Python.h"
+#include <Python.h>
 #include <pybind11.h>
 #include <numpy.h>
 #include <complex>
+#include <embed.h>
 
 using namespace std::complex_literals;
 namespace py = pybind11;
 int main()
 {
+	pybind11::scoped_interpreter guard{};
+	pybind11::exec("print('hello world')");
+
     Py_Initialize();
 
     PyRun_SimpleString("import scipy");
