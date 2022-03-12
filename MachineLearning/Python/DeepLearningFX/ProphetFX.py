@@ -1,9 +1,7 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Sat Mar 12 07:28:22 2022
-
-@author: baugstein
-"""
+# -*- coding: 
+'''
+sample from https://www.kaggle.com/stpeteishii/rand-us-exchage-rates-prophet
+'''
 import gc
 from tqdm import tqdm
 import numpy as np
