@@ -20,18 +20,12 @@ import os
 import warnings
 warnings.filterwarnings("ignore")
 
-data0 = pd.read_csv("Foreign_Exchange_Rates.csv")
+data0 = pd.read_csv("HackathonData.csv")
 data0[-5:]
 
 print(data0.info())
 
-cols=data0[data0['SOUTH AFRICA - RAND/US$']=='ND'].index.tolist()
-print(cols)
-
-data0=data0.drop(index=cols)
-print(data0.columns)
-
-data1=data0[['Time Serie','EURO AREA - EURO/US$']]
+data1=data0[['ds','y']]
 
 item1=data1
 
@@ -41,6 +35,8 @@ item1.ds = item1.ds.astype('datetime64')
 
 rcParams['figure.figsize'] = 20,5
 plt.plot(item1.ds, item1.y)
+plt.xlabel("Date")
+plt.ylabel("MarketValue ($Millions)")
 
 ph = Prophet()
 ph.fit(item1)
@@ -49,8 +45,8 @@ figure = ph.plot(forecast1)
 figure.show()
 
 from datetime import timedelta
-start0 = dt.datetime.strptime('2019-01-01','%Y-%m-%d').date()
-end0   = dt.datetime.strptime('2021-12-31','%Y-%m-%d').date()
+start0 = dt.datetime.strptime('2021-12-03','%Y-%m-%d').date()
+end0   = dt.datetime.strptime('2022-06-30','%Y-%m-%d').date()
 print((end0-start0).days)
 
 def daterange(start,end):
