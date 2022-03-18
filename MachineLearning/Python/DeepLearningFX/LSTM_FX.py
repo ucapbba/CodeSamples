@@ -74,8 +74,14 @@ target_index = df_feat.columns.tolist().index('Forward')
 #dataset = df_feat.values.astype('float32')
 
 #Separate the Input from the Target  #TODO - what is X?
-X = df_feat[:, dates_index]
-y = df_feat[:, target_index]
+#X = df_feat[:, dates_index]
+useless_cols = ['date','Forward','ds']
+#define train columns to use in model
+train_cols = df_feat.columns[~df_feat.columns.isin(useless_cols)]
+
+X = df_feat[train_cols]
+y = df_feat['Forward']
+
 
 # Feature Analysis against Target:
 plt.figure(figsize=(15,5))
@@ -114,8 +120,8 @@ X_test = X[int(len(X)*pct_train):]
 y_test = y[int(len(y)*pct_train):]
 
 #Reshape our data into time series for an LSTM model
-X_train = X_train.reshape((X_train.shape[0],1,20))
-X_test = X_test.reshape((X_test.shape[0],1,20))
+#X_train = X_train.reshape((X_train.shape[0],1,20))
+#X_test = X_test.reshape((X_test.shape[0],1,20))
 
 # Create Model:
 model = Sequential()
