@@ -9,6 +9,8 @@ from scipy.stats import mode #statistics for slope
 from sklearn.metrics import mean_squared_error #error metric to optimise when we build a model
 from math import sqrt #Other math functions
 import plotly.express as px #alternative charting function
+import plotly.io as pio #graphs do not work in Spyder
+pio.renderers.default='browser'
 import lightgbm as lgb #popular model choice
 import seaborn as sns #alternative charting function
 
@@ -122,7 +124,6 @@ df_long=pd.melt(forex_df, id_vars=['date'], value_vars=['AUSTRALIA - AUSTRALIAN 
 
 # plotly 
 fig = px.line(df_long, x='date', y='value', color='variable')
-
 # Show plot 
 fig.show()
 
