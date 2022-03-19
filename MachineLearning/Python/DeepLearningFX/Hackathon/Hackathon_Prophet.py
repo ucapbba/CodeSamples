@@ -3,7 +3,10 @@ import plotly.express as px #alternative charting function
 import plotly.io as pio #graphs do not work in Spyder
 pio.renderers.default='browser'
 
-
+from prophet import Prophet
+from pylab import rcParams
+import matplotlib.pyplot as plt
+'''
 #-----------------------------------------
 #folio indicators
 #-----------------------------------------
@@ -25,30 +28,25 @@ fig = px.line(folio_plot, x='Date', y='value', color='variable')
 # Show plot 
 #fig.show()
 
-
-from prophet import Prophet
-from pylab import rcParams
-import matplotlib.pyplot as plt
 #-----------------------------------------
 #Prophet - Model folio indicators 
 #-----------------------------------------
 folio_df_2 = folio_df[['Date','Result']]
-item1=folio_df_2
-item1.columns = ['ds','y']
-item1.y = item1.y.astype('float')
-item1.ds = item1.ds
-item1.sort_values('ds')
+item2=folio_df_2
+item2.columns = ['ds','y']
+item2.y = item2.y.astype('float')
+item2.ds = item2.ds
+item2.sort_values('ds')
 rcParams['figure.figsize'] = 20,5
-plt.plot(item1.ds, item1.y)
+plt.plot(item2.ds, item2.y)
 plt.xlabel("Date")
 plt.ylabel("MarketValue ($Millions)")
 ph = Prophet()
-ph.fit(item1)
-forecast1=ph.predict(item1)
+ph.fit(item2)
+forecast1=ph.predict(item2)
 figure = ph.plot(forecast1)
 figure.show()
-
-
+'''
 
 #-----------------------------------------
 #trade indicators
@@ -77,7 +75,9 @@ for idx,date in enumerate(dates):
 trade_plot=pd.melt(trade_df_all, id_vars=['Date'], value_vars=['Trade Amount'])
 fig = px.line(trade_plot, x='Date', y='value', color='variable')
 # Show plot 
-fig.show()
+#fig.show()
+
+
 
 #-----------------------------------------
 #Prophet - Model trade indicators 
@@ -85,8 +85,8 @@ fig.show()
 item1=trade_df_all
 item1.columns = ['ds','y']
 item1.y = item1.y.astype('float')
-item1.ds = item1.ds.astype('datetime64')
-
+item1.ds = item1.ds
+item1.sort_values('ds')
 rcParams['figure.figsize'] = 20,5
 plt.plot(item1.ds, item1.y)
 plt.xlabel("Date")
@@ -96,3 +96,9 @@ ph.fit(item1)
 forecast1=ph.predict(item1)
 figure = ph.plot(forecast1)
 figure.show()
+
+
+#figure.show()
+
+
+
