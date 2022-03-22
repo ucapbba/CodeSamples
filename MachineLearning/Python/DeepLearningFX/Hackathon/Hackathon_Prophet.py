@@ -94,11 +94,16 @@ plt.ylabel("MarketValue ($Millions)")
 ph = Prophet()
 ph.fit(item1)
 forecast1=ph.predict(item1)
+print(forecast1[['ds', 'yhat', 'yhat_lower', 'yhat_upper']].tail())
 figure = ph.plot(forecast1)
+fig2 = ph.plot_components(forecast1) #need ore data
 figure.show()
 
+##from prophet.plot import plot_plotly, plot_components_plotly -- not working 
+#plot_plotly(ph, forecast1) 
+#plot_components_plotly(ph, forecast1)
 
-#figure.show()
+
 
 
 
