@@ -64,19 +64,18 @@ for idx,date in enumerate(dates):
 trade_plot=pd.melt(trade_df_all, id_vars=['Date'], value_vars=['Trade Amount'])
 fig = px.line(trade_plot, x='Date', y='value', color='variable')
 # Show plot 
-fig.show()
+#fig.show()
 
+##useless_cols = [' 
+ ##               "date", 
 
 x_train = trade_df_all[trade_df_all['Date'] <= '2022-01-02']
 #The variable we want to predict is AUD to USD rate.
-y_train = x_train['Trade Amount']
-
-#define train columns to use in model
-train_cols = trade_df_all['Trade Amount']
+y_train = x_train['Trade Amount'].to_frame()
 
 #The LGBM model needs a train and validation dataset to be fed into it, let's use Nov 2019
-x_val = trade_df_all[(trade_df_all['Date'] > '2022-01-02') & (trade_df_all['Date'] <= '2022-03-03')]
-y_val = x_val['Trade Amount']
+x_val = trade_df_all[trade_df_all['Date'] > '2022-01-02']
+y_val = x_val['Trade Amount'].to_frame()
 
 #Setup the data in the necessary format the LGB requires
 train_set = lgb.Dataset(x_train['Date'], y_train)
