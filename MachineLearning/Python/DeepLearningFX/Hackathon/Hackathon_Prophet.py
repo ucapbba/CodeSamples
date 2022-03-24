@@ -6,21 +6,18 @@ pio.renderers.default='browser'
 from prophet import Prophet
 from pylab import rcParams
 import matplotlib.pyplot as plt
-'''
+
 #-----------------------------------------
 #folio indicators
 #-----------------------------------------
-folio_df = pd.read_csv('Data/Portfolio_data.csv',engine = 'python')
+folio_df = pd.read_csv('Data/Portfolio_data2.csv',engine = 'python')
 
 print(folio_df.tail(40))
-print(folio_df.info()) #now see float 64 (aside from time serie)
+print(folio_df.info()) 
 
 #todo - filter for specific position / take largest empty position
 folio_df=folio_df[folio_df['GroupByCriteriaValues']=='AMERICAN DOLLAR']
 folio_df=folio_df[folio_df['Indicator']=='Asset Fx Delta']
-
-#sum all positions 
-#folio_df=folio_df[folio_df['GroupByCriteriaValues']!=''] #doesn't filter
 
 folio_plot=pd.melt(folio_df, id_vars=['Date'], value_vars=['Result'])
 
@@ -35,7 +32,7 @@ folio_df_2 = folio_df[['Date','Result']]
 item2=folio_df_2
 item2.columns = ['ds','y']
 item2.y = item2.y.astype('float')
-item2.ds = item2.ds
+item2.ds = item2.ds#.astype('datetime64')
 item2.sort_values('ds')
 rcParams['figure.figsize'] = 20,5
 plt.plot(item2.ds, item2.y)
@@ -46,8 +43,8 @@ ph.fit(item2)
 forecast1=ph.predict(item2)
 figure = ph.plot(forecast1)
 figure.show()
-'''
 
+'''
 #-----------------------------------------
 #trade indicators
 #-----------------------------------------
@@ -103,7 +100,7 @@ figure.show()
 #plot_plotly(ph, forecast1) 
 #plot_components_plotly(ph, forecast1)
 
-
+'''
 
 
 
