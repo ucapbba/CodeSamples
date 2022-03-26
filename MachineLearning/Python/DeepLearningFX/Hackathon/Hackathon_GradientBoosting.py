@@ -8,78 +8,60 @@ from pylab import rcParams
 import matplotlib.pyplot as plt
 import lightgbm as lgb #popular model choice
 import seaborn as sns #alternative charting function
+import matplotlib.dates as mdates
+
 #-----------------------------------------
 #folio indicators
 #-----------------------------------------
-'''folio_df = pd.read_csv('Data/Portfolio_data.csv',engine = 'python')
-
-print(folio_df.tail(40))
-print(folio_df.info()) #now see float 64 (aside from time serie)
-
-#todo - filter for specific position / take largest empty position
-folio_df=folio_df[folio_df['GroupByCriteriaValues']=='AMERICAN DOLLAR']
-folio_df=folio_df[folio_df['Indicator']=='Asset Fx Delta']
-
-#sum all positions 
-#folio_df=folio_df[folio_df['GroupByCriteriaValues']!=''] #doesn't filter
-
-folio_plot=pd.melt(folio_df, id_vars=['Date'], value_vars=['Result'])
-
-fig = px.line(folio_plot, x='Date', y='value', color='variable')
-# Show plot 
-fig.show()
-'''
-#-----------------------------------------
-#Gradient Boosting - Model folio indicators 
-#-----------------------------------------
-#x_train = folio_df[folio_df['date'] <= 'nope'] #dataset WAY too small test train and validate
-#Same will be true for LTSM
-#y_train = x_train['AUSTRALIA - AUSTRALIAN DOLLAR/US$']
-
-
-#-----------------------------------------
-#trade indicators
-#-----------------------------------------
-trade_df = pd.read_excel('Data/Trade_data.xlsx')
-print(trade_df.tail(40))
-print(trade_df.info()) #now see float 64 (aside from time serie)
+data_set = pd.read_csv('Data/Portfolio_data2.csv',engine = 'python')
+print(data_set.tail(40))
+print(data_set.info()) #now see float 64 (aside from time serie)
 #trade_df=trade_df[trade_df['Hierarchy']=='   EUR versus USD'] #to filter on specific trades
 dates = pd.date_range('04/01/2021', periods=365, freq='D')
-print(trade_df.iloc[0]['Trade Date'])
 
-trade_df_all = pd.DataFrame()
+data_set=data_set[data_set['GroupByCriteriaValues']=='AMERICAN DOLLAR']
+data_set=data_set[data_set['Indicator']=='Asset Fx Delta']
 
-for idx,date in enumerate(dates):
-  
-    value= trade_df.loc[trade_df['Trade Date']==date]
-    if not value.empty:
-        value_sum = value.sum()
-        amount = value_sum['Net Amount']
-        dict = {'Date': date,'Trade Amount' : amount}
-        trade_df_all = trade_df_all.append(dict, ignore_index = True)
-    else:
-        dict = {'Date': date,'Trade Amount' : 0}
-        trade_df_all = trade_df_all.append(dict, ignore_index = True)
-       
-trade_plot=pd.melt(trade_df_all, id_vars=['Date'], value_vars=['Trade Amount'])
-fig = px.line(trade_plot, x='Date', y='value', color='variable')
+#data_set=pd.melt(data_set, id_vars=['Date'], value_vars=['Result'])
+
+data_set['lag_t1'] = data_set['Result'].transform(lambda x: x.shift(1))
+data_set['rolling_mean_t1_t7'] = data_set['lag_t1'].rolling(7,min_periods=1).mean()
+data_set['rolling_mean_t1_t14'] = data_set['lag_t1'].rolling(14,min_periods=1).mean()
+
 # Show plot 
+fig, ax = plt.subplots(figsize=(12, 12))
+plt.plot(data_set['Date'],data_set['Result'])
+plt.plot(data_set['Date'],data_set['rolling_mean_t1_t7'])
+plt.plot(data_set['Date'],data_set['rolling_mean_t1_t14'])
+ax.set(xlabel="Date",
+       ylabel="Asset Value FX Delta",
+       title="Time Series")
+
+print("plotting graph - takes around 10 seconds ...... ")
+#plt.show()
+print("done")
+#fig = px.line(data_set, x='Date', y='value', color='variable')     
 #fig.show()
 
-##useless_cols = [' 
- ##               "date", 
 
-x_train = trade_df_all[trade_df_all['Date'] <= '2022-01-02']
+
+useless_cols = ['Date','GroupByCriteriaNames','GroupByCriteriaValues','Indicator','Unnamed: 5']
+train_cols = data_set.columns[~data_set.columns.isin(useless_cols)]
+
+x_train = data_set[data_set['Date'] <= '2022-01-02']
 #The variable we want to predict is AUD to USD rate.
-y_train = x_train['Trade Amount'].to_frame()
+y_train = x_train['Result']#.to_frame()
 
 #The LGBM model needs a train and validation dataset to be fed into it, let's use Nov 2019
-x_val = trade_df_all[trade_df_all['Date'] > '2022-01-02']
-y_val = x_val['Trade Amount'].to_frame()
+x_val = data_set[data_set['Date'] > '2022-01-02']
+y_val = x_val['Result']#.to_frame()
+
+#We shall test the model on data it hasn't seen before or been used in the training process
+test = data_set[(data_set['Date'] > '2022-01-02')]
 
 #Setup the data in the necessary format the LGB requires
-train_set = lgb.Dataset(x_train['Date'], y_train)
-val_set = lgb.Dataset(x_val['Date'], y_val)
+train_set = lgb.Dataset(x_train[train_cols], y_train)
+val_set = lgb.Dataset(x_val[train_cols], y_val)
 
 #Set the model parameters
 params = {
@@ -116,3 +98,26 @@ plt.tight_layout()
 plt.savefig('lgbm_importances-01.png')
 plt.show()
 
+#generate predictions on test data
+y_pred = m_lgb.predict(test[train_cols])
+test['Result_pred'] = y_pred
+
+#view the test data in chart form
+#df_long=pd.melt(test, id_vars=['Date'], value_vars=['Result', 'Result_pred'])
+
+# plotly 
+#fig = px.line(df_long, x='Date', y='value', color='variable')
+
+fig, ax = plt.subplots(figsize=(12, 12))
+plt.plot(test['Date'],test['Result_pred'],'b--')
+plt.plot(test['Date'],test['Result'],'r--')
+ax.set(xlabel="Date",
+       ylabel="Asset Value FX Delta",
+       title="Time Series")
+
+print("plotting graph - takes around 10 seconds ...... ")
+plt.show()
+print("done")
+
+# Show plot 
+fig.show()
