@@ -17,7 +17,7 @@ data_set = pd.read_csv('Data/Portfolio_data2.csv',engine = 'python')
 print(data_set.tail(40))
 print(data_set.info()) #now see float 64 (aside from time serie)
 #trade_df=trade_df[trade_df['Hierarchy']=='   EUR versus USD'] #to filter on specific trades
-dates = pd.date_range('04/01/2021', periods=365, freq='D')
+#dates = pd.date_range('04/01/2021', periods=365, freq='D')
 
 data_set=data_set[data_set['GroupByCriteriaValues']=='AMERICAN DOLLAR']
 data_set=data_set[data_set['Indicator']=='Asset Fx Delta']
@@ -25,39 +25,49 @@ data_set=data_set[data_set['Indicator']=='Asset Fx Delta']
 #data_set=pd.melt(data_set, id_vars=['Date'], value_vars=['Result'])
 
 data_set['lag_t1'] = data_set['Result'].transform(lambda x: x.shift(1))
-data_set['rolling_mean_t1_t7'] = data_set['lag_t1'].rolling(7,min_periods=1).mean()
+data_set['sma5'] = data_set['Result'].rolling(5).mean()
 data_set['rolling_mean_t1_t14'] = data_set['lag_t1'].rolling(14,min_periods=1).mean()
+from datetime import datetime
+data_set['dt']=pd.to_datetime(data_set['Date'],format='%d/%m/%Y')
+data_set.info()
+data_set['week'] = data_set['dt'].dt.week 
+data_set['day'] = data_set['dt'].dt.day
+data_set['dayofweek'] = data_set['dt'].dt.dayofweek
 
 # Show plot 
 fig, ax = plt.subplots(figsize=(12, 12))
 plt.plot(data_set['Date'],data_set['Result'])
-plt.plot(data_set['Date'],data_set['rolling_mean_t1_t7'])
+plt.plot(data_set['Date'],data_set['sma5'])
 plt.plot(data_set['Date'],data_set['rolling_mean_t1_t14'])
 ax.set(xlabel="Date",
        ylabel="Asset Value FX Delta",
        title="Time Series")
 
+every_nth = 10
+for n, label in enumerate(ax.xaxis.get_ticklabels()):
+    if n % every_nth != 0:
+        label.set_visible(False)
+
+plt.xticks(rotation=70)
 print("plotting graph - takes around 10 seconds ...... ")
 #plt.show()
 print("done")
 #fig = px.line(data_set, x='Date', y='value', color='variable')     
 #fig.show()
 
-
-
-useless_cols = ['Date','GroupByCriteriaNames','GroupByCriteriaValues','Indicator','Unnamed: 5']
+useless_cols = ['dt','Date','GroupByCriteriaNames','GroupByCriteriaValues','Indicator','Unnamed: 5']
 train_cols = data_set.columns[~data_set.columns.isin(useless_cols)]
-
-x_train = data_set[data_set['Date'] <= '2022-01-02']
+date='02/01/2022'
+x_train = data_set[:200]
 #The variable we want to predict is AUD to USD rate.
 y_train = x_train['Result']#.to_frame()
 
-#The LGBM model needs a train and validation dataset to be fed into it, let's use Nov 2019
-x_val = data_set[data_set['Date'] > '2022-01-02']
+#The LGBM model needs a train and validation dataset to be fed into it
+x_val = data_set[200:270]
 y_val = x_val['Result']#.to_frame()
 
 #We shall test the model on data it hasn't seen before or been used in the training process
-test = data_set[(data_set['Date'] > '2022-01-02')]
+test = data_set[200:350]
 
 #Setup the data in the necessary format the LGB requires
 train_set = lgb.Dataset(x_train[train_cols], y_train)
@@ -114,10 +124,16 @@ plt.plot(test['Date'],test['Result'],'r--')
 ax.set(xlabel="Date",
        ylabel="Asset Value FX Delta",
        title="Time Series")
+every_nth = 10
+for n, label in enumerate(ax.xaxis.get_ticklabels()):
+    if n % every_nth != 0:
+        label.set_visible(False)
+
+plt.xticks(rotation=70)
 
 print("plotting graph - takes around 10 seconds ...... ")
 plt.show()
 print("done")
 
 # Show plot 
-fig.show()
+#fig.show()
