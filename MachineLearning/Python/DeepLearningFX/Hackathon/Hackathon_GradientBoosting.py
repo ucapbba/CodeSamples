@@ -25,6 +25,15 @@ data_set=data_set[data_set['Indicator']=='Asset Fx Delta']
 #data_set=pd.melt(data_set, id_vars=['Date'], value_vars=['Result'])
 
 data_set['lag_t1'] = data_set['Result'].transform(lambda x: x.shift(1))
+data_set['lag_t5'] = data_set['Result'].transform(lambda x: x.shift(5))
+def get_direction(row1, row2):
+    if row2 >= row1:
+        return 1
+    else:
+        return 0   
+data_set['Direction1'] = data_set[['lag_t1', 'Result']].apply(lambda i: get_direction(i[0], i[1]), axis=1)
+data_set['Direction5'] = data_set[['lag_t5', 'Result']].apply(lambda i: get_direction(i[0], i[1]), axis=1)
+#data_set['ResultChange'] = data_set['Result'].transform(lambda x: x.shift(1))
 data_set['sma5'] = data_set['Result'].rolling(5).mean()
 data_set['rolling_mean_t1_t14'] = data_set['lag_t1'].rolling(14,min_periods=1).mean()
 from datetime import datetime
@@ -32,7 +41,11 @@ data_set['dt']=pd.to_datetime(data_set['Date'],format='%d/%m/%Y')
 data_set.info()
 data_set['week'] = data_set['dt'].dt.week 
 data_set['day'] = data_set['dt'].dt.day
+data_set['month'] = data_set['dt'].dt.month
 data_set['dayofweek'] = data_set['dt'].dt.dayofweek
+
+
+
 
 # Show plot 
 fig, ax = plt.subplots(figsize=(12, 12))
@@ -58,16 +71,16 @@ print("done")
 useless_cols = ['dt','Date','GroupByCriteriaNames','GroupByCriteriaValues','Indicator','Unnamed: 5']
 train_cols = data_set.columns[~data_set.columns.isin(useless_cols)]
 date='02/01/2022'
-x_train = data_set[:200]
+x_train = data_set[:100]
 #The variable we want to predict is AUD to USD rate.
 y_train = x_train['Result']#.to_frame()
 
 #The LGBM model needs a train and validation dataset to be fed into it
-x_val = data_set[200:270]
+x_val = data_set[100:150]
 y_val = x_val['Result']#.to_frame()
 
 #We shall test the model on data it hasn't seen before or been used in the training process
-test = data_set[200:350]
+test = data_set[150:350]
 
 #Setup the data in the necessary format the LGB requires
 train_set = lgb.Dataset(x_train[train_cols], y_train)
