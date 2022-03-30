@@ -10,16 +10,17 @@ import matplotlib.pyplot as plt
 #-----------------------------------------
 #folio indicators
 #-----------------------------------------
-folio_df = pd.read_csv('Data/Portfolio_data2.csv',engine = 'python')
+folio_df = pd.read_excel('Data/Portfolio_data3_convert.xlsx',na_values='ND')
 
 print(folio_df.tail(40))
 print(folio_df.info()) 
 
 #todo - filter for specific position / take largest empty position
-folio_df=folio_df[folio_df['GroupByCriteriaValues']=='AMERICAN DOLLAR']
-folio_df=folio_df[folio_df['Indicator']=='Asset Fx Delta']
+target_column = 'More Columns.Asset Fx Delta in %'
+folio_df=folio_df[folio_df['More Columns.GroupByLevel1Value']=='AMERICAN DOLLAR']
+folio_df_normal = folio_df[folio_df[target_column]<=10]
 
-folio_plot=pd.melt(folio_df, id_vars=['Date'], value_vars=['Result'])
+folio_plot=pd.melt(folio_df_normal, id_vars=['Date'], value_vars=target_column)
 
 fig = px.line(folio_plot, x='Date', y='value', color='variable')
 # Show plot 
@@ -28,7 +29,7 @@ fig = px.line(folio_plot, x='Date', y='value', color='variable')
 #-----------------------------------------
 #Prophet - Model folio indicators 
 #-----------------------------------------
-folio_df_2 = folio_df[['Date','Result']]
+folio_df_2 = folio_df_normal[['Date',target_column]]
 item2=folio_df_2
 item2.columns = ['ds','y']
 item2.y = item2.y.astype('float')
@@ -43,6 +44,33 @@ ph.fit(item2)
 forecast1=ph.predict(item2)
 figure = ph.plot(forecast1)
 figure.show()
+
+
+import datetime as dt
+from datetime import timedelta
+start0 = dt.datetime.strptime('2021-12-03','%Y-%m-%d').date()
+end0   = dt.datetime.strptime('2022-06-30','%Y-%m-%d').date()
+print((end0-start0).days)
+
+def daterange(start,end):
+    for i in range((end-start).days):
+        return start+timedelta(i)  
+    
+dates0=[]
+for i in range((end0-start0).days):
+    dates0+=[(start0+timedelta(i)).strftime('%Y-%m-%d') ]
+print(dates0[0:10])
+
+dates0_df=pd.DataFrame(dates0)
+dates0_df.columns=['ds']
+dates0_df
+
+ph = Prophet()
+ph.fit(item2[-365*2:])
+forecast3=ph.predict(dates0_df)
+figure = ph.plot(forecast3)
+figure.show()
+
 
 '''
 #-----------------------------------------
