@@ -13,29 +13,39 @@ import matplotlib.dates as mdates
 #-----------------------------------------
 #folio indicators
 #-----------------------------------------
-data_set = pd.read_csv('Data/Portfolio_data2.csv',engine = 'python')
+print('Reading data - takes over 1 minute....')
+data_set = pd.read_excel('Data/Portfolio_data3_convert.xlsx',na_values='ND')
+print('Done')
 print(data_set.tail(40))
 print(data_set.info()) #now see float 64 (aside from time serie)
 #trade_df=trade_df[trade_df['Hierarchy']=='   EUR versus USD'] #to filter on specific trades
 #dates = pd.date_range('04/01/2021', periods=365, freq='D')
 
-data_set=data_set[data_set['GroupByCriteriaValues']=='AMERICAN DOLLAR']
-data_set=data_set[data_set['Indicator']=='Asset Fx Delta']
+data_set=data_set[data_set['More Columns.GroupByLevel1Value']=='AMERICAN DOLLAR']
+data_set_AIRBNB=data_set[data_set['More Columns.GroupByLevel1Value']=='AIRBNB']
 
 #data_set=pd.melt(data_set, id_vars=['Date'], value_vars=['Result'])
 
-data_set['lag_t1'] = data_set['Result'].transform(lambda x: x.shift(1))
-data_set['lag_t5'] = data_set['Result'].transform(lambda x: x.shift(5))
+target_column = 'More Columns.Asset Fx Delta in %'
+
+data_set['lag_t1'] = data_set[target_column].transform(lambda x: x.shift(1))
+data_set['lag_t5'] = data_set[target_column].transform(lambda x: x.shift(5))
 def get_direction(row1, row2):
     if row2 >= row1:
         return 1
     else:
         return 0   
-data_set['Direction1'] = data_set[['lag_t1', 'Result']].apply(lambda i: get_direction(i[0], i[1]), axis=1)
-data_set['Direction5'] = data_set[['lag_t5', 'Result']].apply(lambda i: get_direction(i[0], i[1]), axis=1)
-#data_set['ResultChange'] = data_set['Result'].transform(lambda x: x.shift(1))
-data_set['sma5'] = data_set['Result'].rolling(5).mean()
-data_set['rolling_mean_t1_t14'] = data_set['lag_t1'].rolling(14,min_periods=1).mean()
+def get_change(row1, row2):
+    return row2/row1/100
+
+
+data_set['Direction1'] = data_set[['lag_t1', target_column]].apply(lambda i: get_direction(i[0], i[1]), axis=1)
+data_set['Direction5'] = data_set[['lag_t5', target_column]].apply(lambda i: get_direction(i[0], i[1]), axis=1)
+data_set['Change1'] = data_set[['lag_t1',target_column]].apply(lambda i: get_change(i[0], i[1]), axis=1)
+
+data_set['FXDeltaChange'] = data_set[target_column].transform(lambda x: x.shift(1))
+
+
 from datetime import datetime
 data_set['dt']=pd.to_datetime(data_set['Date'],format='%d/%m/%Y')
 data_set.info()
@@ -43,44 +53,44 @@ data_set['week'] = data_set['dt'].dt.week
 data_set['day'] = data_set['dt'].dt.day
 data_set['month'] = data_set['dt'].dt.month
 data_set['dayofweek'] = data_set['dt'].dt.dayofweek
+data_set_normal = data_set[data_set[target_column]<=10]
+data_set_normal['sma5'] = data_set_normal[target_column].rolling(5).mean()
+data_set_normal['sma15'] = data_set_normal[target_column].rolling(15).mean()
+data_set_normal['sma30'] = data_set_normal[target_column].rolling(30).mean()
 
-
-
-
-# Show plot 
+# Show plot - normal
 fig, ax = plt.subplots(figsize=(12, 12))
-plt.plot(data_set['Date'],data_set['Result'])
-plt.plot(data_set['Date'],data_set['sma5'])
-plt.plot(data_set['Date'],data_set['rolling_mean_t1_t14'])
+plt.plot(data_set_normal['Date'],data_set_normal[target_column])
+plt.plot(data_set_normal['Date'],data_set_normal['sma30'])
 ax.set(xlabel="Date",
-       ylabel="Asset Value FX Delta",
+       ylabel="Asset Value FX Delta in %",
        title="Time Series")
-
-every_nth = 10
-for n, label in enumerate(ax.xaxis.get_ticklabels()):
-    if n % every_nth != 0:
-        label.set_visible(False)
-
 plt.xticks(rotation=70)
-print("plotting graph - takes around 10 seconds ...... ")
-#plt.show()
-print("done")
-#fig = px.line(data_set, x='Date', y='value', color='variable')     
-#fig.show()
 
-useless_cols = ['dt','Date','GroupByCriteriaNames','GroupByCriteriaValues','Indicator','Unnamed: 5']
-train_cols = data_set.columns[~data_set.columns.isin(useless_cols)]
+# Show plot - normal
+fig, ax = plt.subplots(figsize=(12, 12))
+plt.plot(data_set['Date'],data_set[target_column])
+ax.set(xlabel="Date",
+       ylabel="Asset Value FX Delta in %",
+       title="Time Series")
+plt.xticks(rotation=70)
+
+
+
+
+useless_cols = ['More Columns.Instrument type','FolioId','dt','DateRef','Date','More Columns.Balance per ccy','More Columns.GroupByLevel1Value','More Columns.GroupByLevel1','More Columns.Balance per ccy','More Columns.Number of securities']
+train_cols = data_set_normal.columns[~data_set_normal.columns.isin(useless_cols)]
 date='02/01/2022'
-x_train = data_set[:100]
+x_train = data_set_normal[:300]
 #The variable we want to predict is AUD to USD rate.
-y_train = x_train['Result']#.to_frame()
+y_train = x_train[target_column]#.to_frame()
 
 #The LGBM model needs a train and validation dataset to be fed into it
-x_val = data_set[100:150]
-y_val = x_val['Result']#.to_frame()
+x_val = data_set_normal[300:400]
+y_val = x_val[target_column]#.to_frame()
 
 #We shall test the model on data it hasn't seen before or been used in the training process
-test = data_set[150:350]
+test = data_set_normal[400:450]
 
 #Setup the data in the necessary format the LGB requires
 train_set = lgb.Dataset(x_train[train_cols], y_train)
@@ -133,14 +143,10 @@ test['Result_pred'] = y_pred
 
 fig, ax = plt.subplots(figsize=(12, 12))
 plt.plot(test['Date'],test['Result_pred'],'b--')
-plt.plot(test['Date'],test['Result'],'r--')
+plt.plot(test['Date'],test[target_column],'r--')
 ax.set(xlabel="Date",
-       ylabel="Asset Value FX Delta",
+       ylabel="Asset Value FX Delta in %",
        title="Time Series")
-every_nth = 10
-for n, label in enumerate(ax.xaxis.get_ticklabels()):
-    if n % every_nth != 0:
-        label.set_visible(False)
 
 plt.xticks(rotation=70)
 
