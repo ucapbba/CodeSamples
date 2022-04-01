@@ -21,13 +21,20 @@ df = data_set['value']
 #Preprocessing data set
 df = np.array(df).reshape(-1,1)
 
+'''df['dt']=pd.to_datetime(data_set['Date'],format='%d/%m/%Y')
+df['week'] = data_set['dt'].dt.week 
+df['day'] = data_set['dt'].dt.day
+df['month'] = data_set['dt'].dt.month
+data_set['dayofweek'] = data_set['dt'].dt.dayofweek'''
+
 from sklearn.preprocessing import MinMaxScaler
 scaler = MinMaxScaler()
 df = scaler.fit_transform(df)
 
+
 #Training and test sets
-train = df[:200]
-test = df[200:]
+train = df[:260]
+test = df[260:]
 
 print(train.shape)
 print(test.shape)

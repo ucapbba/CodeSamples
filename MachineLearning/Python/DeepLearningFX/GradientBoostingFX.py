@@ -143,7 +143,7 @@ forex_df['lag_t3_round_1'] = forex_df['lag_t3'].round(1)
 forex_df['lag_t7_round_1'] = forex_df['lag_t7'].round(1)
 
 #rolling mode of rounded figure
-forex_df['lag_t1_mode_7'] = forex_df['lag_t1_round_1'].rolling(window=7,min_periods=1).apply(lambda x: mode(x)[0])
+'''forex_df['lag_t1_mode_7'] = forex_df['lag_t1_round_1'].rolling(window=7,min_periods=1).apply(lambda x: mode(x)[0])
 forex_df['lag_t1_mode_14'] = forex_df['lag_t1_round_1'].rolling(window=14,min_periods=1).apply(lambda x: mode(x)[0])
 forex_df['lag_t1_mode_28'] = forex_df['lag_t1_round_1'].rolling(window=28,min_periods=1).apply(lambda x: mode(x)[0])
 forex_df['lag_t1_mode_90'] = forex_df['lag_t1_round_1'].rolling(window=90,min_periods=1).apply(lambda x: mode(x)[0])
@@ -210,7 +210,7 @@ forex_df['lag_t1_deriv2_28'] = forex_df['lag_t1_slope_7'].rolling(28).apply(lamb
 forex_df['lag_t1_deriv2_90'] = forex_df['lag_t1_slope_7'].rolling(90).apply(lambda x: np.polyfit(range(90), x, 1)[0]).values
 forex_df['lag_t1_deriv2_180'] = forex_df['lag_t1_slope_7'].rolling(180).apply(lambda x: np.polyfit(range(180), x, 1)[0]).values
 forex_df['lag_t1_deriv2_360'] = forex_df['lag_t1_slope_7'].rolling(360).apply(lambda x: np.polyfit(range(360), x, 1)[0]).values
-
+'''
 #We have a heap of features:
 print(list(forex_df.columns))
 
