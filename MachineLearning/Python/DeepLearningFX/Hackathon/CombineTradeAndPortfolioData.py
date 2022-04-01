@@ -13,7 +13,7 @@ print('Done')
 
 
 print('Reading trade data....')
-data_set = pd.read_excel('../Hackathon/Data/TradesConvertible2.xlsx',na_values='ND')
+data_set = pd.read_excel('Data/TradesConvertible2.xlsx',na_values='ND')
 print('Done')
 
 target_column = 'Net Amount'
