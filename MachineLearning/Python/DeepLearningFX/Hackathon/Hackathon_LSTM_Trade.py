@@ -50,8 +50,8 @@ df = scaler.fit_transform(df)
 plt.plot(df)
 
 #Training and test sets
-train = df[:400]
-test = df[400:]
+train = df[:350]
+test = df[350:]
 
 def get_data(data, look_back):
   datax, datay = [],[]
@@ -103,7 +103,7 @@ model.add(Dense(1))
 model.compile(optimizer='adam', loss = 'mse')
 
 #Training
-model.fit(x_train,y_train, epochs = 100, batch_size=32)
+model.fit(x_train,y_train, epochs = 250, batch_size=32)
 
 #-----------------------------------------
 #LSTM testing
