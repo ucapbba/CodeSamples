@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 
 print('Reading folio data')
-data_set = pd.read_excel('Data/Portfolio_data3_convert.xlsx',na_values='ND')
+#data_set = pd.read_excel('Data/Portfolio_data3_convert.xlsx',na_values='ND')
 print('Done')
 
 
@@ -17,17 +17,24 @@ data_set = pd.read_excel('Data/TradesConvertible2.xlsx',na_values='ND')
 print('Done')
 
 target_column = 'Net Amount'
-dates = pd.date_range('15/01/2020', periods=720, freq='D')
+dates = pd.date_range('16/01/2020', periods=720, freq='D')
 trade_df_all = pd.DataFrame()
 
-for idx,date in enumerate(dates):
+rowindex=0
 
-    value= data_set.loc[data_set['Trade Date']==date]
-    if not value.empty:
-        value_sum = value.sum()
+for idx,date in enumerate(dates):
+    thisrow= data_set.loc[data_set['Trade Date']==date]
+    if not thisrow.empty:
+        value_sum = thisrow.sum()
         amount = value_sum[target_column]
+        isUSDvsEUR = thisrow['Hierarchy'][rowindex]=='   EUR versus USD'
+        print(date)
+        print(isUSDvsEUR)
+        if isUSDvsEUR== False: #reverse amount for USD vs EUR (same for EUR vs USD)
+          amount=-amount
         dict = {'Date': date,target_column : amount}
         trade_df_all = trade_df_all.append(dict, ignore_index = True)
+        rowindex+=len(thisrow) #pretty sure this is horrific coding practice
     else:
         dict = {'Date': date,target_column : 0}
         trade_df_all = trade_df_all.append(dict, ignore_index = True)
