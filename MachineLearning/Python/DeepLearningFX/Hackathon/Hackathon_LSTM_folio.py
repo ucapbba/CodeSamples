@@ -163,8 +163,9 @@ plt.yticks(fontsize = 15)
 plt.grid(True)
 plt.legend()
 
-
-#test_date = np.array(test_date).reshape(-1,1)
+#-----------------------------------------
+#Get estimated hedge
+#-----------------------------------------
 date_df=pd.DataFrame(test_date,columns = ['Date'])
 print(date_df.info())
 target_date = '2022-01-17 00:00:00'
