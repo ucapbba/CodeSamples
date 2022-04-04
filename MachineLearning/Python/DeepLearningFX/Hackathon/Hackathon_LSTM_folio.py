@@ -15,29 +15,38 @@ from datetime import date
 #-----------------------------------------
 
 print('Reading data ....')
-data_set = pd.read_excel('Data/Portfolio_data3_convert.xlsx',na_values='ND')
+data_set = pd.read_excel('Data/Portfolio_data3_convert_USD_only.xlsx',na_values='ND')
 print('Done')
 print(data_set.tail(40))
 print(data_set.info()) #now see float 64 (aside from time serie)
 
 data_set=data_set[data_set['More Columns.GroupByLevel1Value']=='AMERICAN DOLLAR']
-target_column = 'More Columns.Asset Fx Delta in %'
+target_column = 'More Columns.Asset Fx Delta'
 df = data_set[target_column]
+df_date=data_set['Date']
 #Preprocessing data set
 df = np.array(df).reshape(-1,1)
-
+df_date=np.array(df_date).reshape(-1,1)
 #-----------------------------------------
 #preparing training and testing data
 #-----------------------------------------
 
+
+fig, ax = plt.subplots(figsize=(12, 12))
+ax.set(xlabel="Date",
+       ylabel="Asset Value FX Delta",
+       title="Portfolio Convertable - Maerican Dollar")
+plt.xticks(rotation=70)
+plt.plot(df_date,df)
+
 from sklearn.preprocessing import MinMaxScaler
-scaler = MinMaxScaler()
+scaler = MinMaxScaler() #normalises - inverse below
 df = scaler.fit_transform(df)
-plt.plot(df)
 
 #Training and test sets
 train = df[:350]
 test = df[350:]
+test_date = df_date[350:]
 
 def get_data(data, look_back):
   datax, datay = [],[]
@@ -89,7 +98,7 @@ model.add(Dense(1))
 model.compile(optimizer='adam', loss = 'mse')
 
 #Training
-model.fit(x_train,y_train, epochs = 250, batch_size=32)
+model.fit(x_train,y_train, epochs = 100, batch_size=32)
 
 #-----------------------------------------
 #LSTM testing
@@ -98,7 +107,7 @@ model.fit(x_train,y_train, epochs = 250, batch_size=32)
 #Prediction using the trained model
 scaler.scale_
 y_pred = model.predict(x_test)
-plt.plot(y_pred)
+#plt.plot(y_pred) broken
 
 #Processing test shape
 y_testPlot = np.array(y_test).reshape(-1,1)
@@ -113,11 +122,13 @@ plt.plot(y_predPlot , label = 'Predicted', color = "red")
 #plt.xlabel('Date',fontsize = 15)
 #plt.ylabel('Asset Value FX Delta in %',fontsize = 15)
 plt.rc('legend', fontsize = 15)
+plt.legend()
 plt.xlim(0.0)
 plt.xticks(fontsize = 15)
 plt.yticks(fontsize = 15)
 plt.grid(True)
 plt.legend()
+
 
 #-----------------------------------------
 #Extending prediction
@@ -151,6 +162,22 @@ plt.xticks(fontsize = 15)
 plt.yticks(fontsize = 15)
 plt.grid(True)
 plt.legend()
+
+
+#test_date = np.array(test_date).reshape(-1,1)
+date_df=pd.DataFrame(test_date,columns = ['Date'])
+print(date_df.info())
+target_date = '2022-01-17 00:00:00'
+index = date_df.loc[date_df['Date'] == target_date]
+print(index.index)
+print("estimating hedge for ",target_date)
+print(index.index)
+print("Estimated ", y_predTotalPlot[index.index-look_back]) 
+if y_predTotalPlot[index.index-look_back] > 10000000 : #fudge to get on specific date but close enough but close enough
+  print("Required Hedge ",y_predTotalPlot[index.index-look_back]) 
+else:
+  print("No hedge required") 
+
 
 #-----------------------------------------
 #Checking the training results
