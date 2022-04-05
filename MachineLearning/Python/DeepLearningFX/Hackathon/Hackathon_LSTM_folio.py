@@ -20,7 +20,7 @@ print('Done')
 print(data_set.tail(40))
 print(data_set.info()) #now see float 64 (aside from time serie)
 
-data_set=data_set[data_set['More Columns.GroupByLevel1Value']=='AMERICAN DOLLAR']
+data_set=data_set[data_set['More Columns.GroupByLevel1Value']=='JAPANESE YEN']
 target_column = 'More Columns.Asset Fx Delta'
 df = data_set[target_column]
 df_date=data_set['Date']
@@ -90,15 +90,18 @@ from tensorflow.keras.layers import Dense,LSTM,Bidirectional
 #Stacked LSTM:
 timesteps=x_train.shape[1]
 model=Sequential()
-model.add(LSTM(100,activation='relu', return_sequences=True, input_shape=(timesteps,n_features)))
-model.add(LSTM(100,activation='relu'))
+model.add(LSTM(100,activation='relu', return_sequences=False, input_shape=(timesteps,n_features)))
+#model.add(LSTM(100,activation='relu', return_sequences=True, input_shape=(timesteps,n_features)))
+#model.add(LSTM(100,activation='relu'))
 model.add(Dense(1))
 
 #Compiling
 model.compile(optimizer='adam', loss = 'mse')
 
 #Training
-model.fit(x_train,y_train, epochs = 100, batch_size=32)
+#epoch - number of times learning goes through data - beware over fitting
+#batch - keeps n training points the same 
+model.fit(x_train,y_train, epochs =100, batch_size=30)
 
 #-----------------------------------------
 #LSTM testing
