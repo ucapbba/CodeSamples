@@ -161,11 +161,12 @@ plt.legend()
 #Extending prediction
 #-----------------------------------------
 
+PredictionRange = 30
 y_predTotal=y_pred
 newMem0 = x_test[-1]
 #remove first value and add last prediction value
 newMem = np.append(newMem0, y_pred[-1])
-for i in range(30):
+for i in range(PredictionRange):
     newMem = np.delete(newMem, 0)
     newMem = newMem.reshape(1,newMem.shape[0], n_features)
     #predict new future value:
