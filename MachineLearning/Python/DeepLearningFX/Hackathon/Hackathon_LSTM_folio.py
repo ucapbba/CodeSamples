@@ -14,6 +14,8 @@ from datetime import timedelta
 #folio indicators
 #-----------------------------------------
 
+#test update
+
 print('Reading data ....')
 data_set = pd.read_excel('Data/Portfolio_data3_convert_USD_only.xlsx',na_values='ND')
 print('Done')
