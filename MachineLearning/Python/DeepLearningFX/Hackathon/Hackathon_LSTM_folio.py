@@ -22,8 +22,33 @@ print(data_set.info()) #now see float 64 (aside from time serie)
 
 data_set=data_set[data_set['More Columns.GroupByLevel1Value']=='JAPANESE YEN']
 target_column = 'More Columns.Asset Fx Delta'
-df = data_set[target_column]
-df_date= np.array(data_set['Date'])
+date_column = 'Date'
+df_old = data_set[target_column]
+
+df_date_old= data_set[date_column]
+
+##fill missing values
+df=pd.DataFrame(columns=[target_column])
+df_date= pd.DataFrame(columns=[date_column])
+
+dates = pd.date_range('01/01/2020', periods=749, freq='D') #up to 19/01/2022
+
+value = 0
+for idx,date in enumerate(dates):
+    print(idx)
+    thisrow_df_date= df_date_old.loc[df_date_old[date_column]==date] 
+    thisrow_df= df_old.loc[df_date_old[date_column]==date]
+    if not thisrow_df_date.empty: #have value
+        value = thisrow_df[target_column]
+        date=thisrow_df_date['Date']
+        df.append({target_column: value})
+        df_date.append({'Date':date})   
+    else:
+       df.append({target_column: value}, ignore_index = True)
+       df_date.append({'Date':date}, ignore_index = True)   
+
+
+df_date= np.array(df_date['Date'])
 #Preprocessing data set
 df = np.array(df).reshape(-1,1)
 #df_date=np.array(df_date).reshape(-1,1)
@@ -46,6 +71,8 @@ df = scaler.fit_transform(df)
 #Training and test sets
 train = df[:350]
 test = df[350:]
+
+
 test_date = df_date[350:]
 
 def get_data(data, look_back):
