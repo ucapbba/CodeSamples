@@ -9,7 +9,7 @@ pio.renderers.default='browser'
 import openpyxl
 #%matplotlib inline
 from datetime import date
-
+from datetime import timedelta
 #-----------------------------------------
 #folio indicators
 #-----------------------------------------
@@ -23,10 +23,10 @@ print(data_set.info()) #now see float 64 (aside from time serie)
 data_set=data_set[data_set['More Columns.GroupByLevel1Value']=='AMERICAN DOLLAR']
 target_column = 'More Columns.Asset Fx Delta'
 df = data_set[target_column]
-df_date=data_set['Date']
+df_date= np.array(data_set['Date'])
 #Preprocessing data set
 df = np.array(df).reshape(-1,1)
-df_date=np.array(df_date).reshape(-1,1)
+#df_date=np.array(df_date).reshape(-1,1)
 #-----------------------------------------
 #preparing training and testing data
 #-----------------------------------------
@@ -78,6 +78,8 @@ n_features = 1
 #Reshape inputs from [samples, timesteps] into [samples, timesteps, features]
 x_train = x_train.reshape(x_train.shape[0],x_train.shape[1], n_features)
 x_test = x_test.reshape(x_test.shape[0],x_test.shape[1], n_features)
+result_date = test_date[look_back:]
+assert len(result_date)==len(y_test)
 
 #-----------------------------------------
 #LSTM
@@ -114,6 +116,28 @@ y_testPlot = np.array(y_test).reshape(-1,1)
 y_testPlot = scaler.inverse_transform(y_testPlot)
 y_predPlot = scaler.inverse_transform(y_pred)
 
+TestingData = pd.DataFrame(data = y_testPlot,columns = ['Asset Value FX'])
+TestingData = pd.concat([TestingData,pd.DataFrame({'Date':result_date})],axis = 1)
+
+LSTM1day = pd.DataFrame(data = y_predPlot,columns = ['Asset Value FX'])
+LSTM1day = pd.concat([LSTM1day,pd.DataFrame({'Date':result_date})],axis = 1)
+LSTM1day['Date'][len(LSTM1day)-1] = LSTM1day['Date'][len(LSTM1day)-2]+timedelta(days = 1)
+
+#Visualizing the results with dates!
+plt.figure(figsize=(10,5))
+plt.title('LSTM',fontsize = 20)
+plt.plot(TestingData['Date'], TestingData['Asset Value FX'] , label = 'Actual', color = "darkblue",linestyle="dotted")
+plt.plot(LSTM1day['Date'], LSTM1day['Asset Value FX'] , label = 'Predicted', color = "red")
+plt.xlabel('Date',fontsize = 20)
+plt.ylabel('Asset Value FX Delta in %',fontsize = 20)
+plt.rc('legend', fontsize = 15)
+plt.xlim(TestingData['Date'][0])
+plt.xticks(fontsize = 15)
+plt.yticks(fontsize = 15)
+plt.grid(True)
+plt.xticks(rotation=70)
+plt.legend()
+
 #Visualizing the results
 plt.figure(figsize=(10,5))
 plt.title('LSTM',fontsize = 20)
@@ -148,6 +172,26 @@ for i in range(30):
     newMem = np.append(newMem, y_stepPred)
 y_predTotal=y_predTotal.reshape(y_predTotal.shape[0], n_features)
 y_predTotalPlot = scaler.inverse_transform(y_predTotal)
+
+LSTM30days = pd.DataFrame(data = y_predTotalPlot,columns = ['Asset Value FX'])
+LSTM30days = pd.concat([LSTM30days,pd.DataFrame({'Date':result_date})],axis = 1)
+for i in range(PredictionRange+1):
+    LSTM30days['Date'][len(LSTM30days)-(PredictionRange+1-i)] = LSTM30days['Date'][len(LSTM30days)-(PredictionRange+2-i)]+timedelta(days = 1)
+
+#Visualizing the results with dates!
+plt.figure(figsize=(10,5))
+plt.title('LSTM - 30 days prediction',fontsize = 20)
+plt.plot(LSTM30days['Date'], LSTM30days['Asset Value FX'] , label = 'Predicted', color = "red")
+plt.plot(TestingData['Date'], TestingData['Asset Value FX'], label = 'Actual', color = "darkblue",linestyle="dotted")
+plt.xlabel('Date',fontsize = 20)
+plt.ylabel('Asset Value FX Delta in %',fontsize = 20)
+plt.rc('legend', fontsize = 15)
+plt.xticks(fontsize = 15)
+plt.yticks(fontsize = 15)
+plt.xticks(rotation=70)
+plt.xlim(TestingData['Date'][0])
+plt.grid(True)
+plt.legend()
 
 #Visualizing the results
 plt.figure(figsize=(10,5))
