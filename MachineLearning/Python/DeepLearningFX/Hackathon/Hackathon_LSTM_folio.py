@@ -24,36 +24,32 @@ print(data_set.info()) #now see float 64 (aside from time serie)
 
 data_set=data_set[data_set['More Columns.GroupByLevel1Value']=='JAPANESE YEN']
 target_column = 'More Columns.Asset Fx Delta'
-date_column = 'Date'
+
 df_old = data_set[target_column]
-
-df_date_old= data_set[date_column]
-
+df_date_old= data_set['Date']
 ##fill missing values
 df=pd.DataFrame(columns=[target_column])
-df_date= pd.DataFrame(columns=[date_column])
+df_date= pd.DataFrame(columns=['Date'])
 
 dates = pd.date_range('01/01/2020', periods=749, freq='D') #up to 19/01/2022
 
 value = 0
 for idx,date in enumerate(dates):
-    print(idx)
-    thisrow_df_date= df_date_old.loc[df_date_old[date_column]==date] 
-    thisrow_df= df_old.loc[df_date_old[date_column]==date]
-    if not thisrow_df_date.empty: #have value
-        value = thisrow_df[target_column]
-        date=thisrow_df_date['Date']
-        df.append({target_column: value})
-        df_date.append({'Date':date})   
+    thisrow_df_date = df_date_old.loc[df_date_old==date]
+    thisrow_df= df_old.loc[df_date_old==date]
+    if not thisrow_df_date.empty: 
+        value = thisrow_df
+        df.loc[idx] = value.values[0]
+        df_date.loc[idx] = date
     else:
-       df.append({target_column: value}, ignore_index = True)
-       df_date.append({'Date':date}, ignore_index = True)   
+        df.loc[idx] = value.values[0]
+        df_date.loc[idx] = date
 
 
 df_date= np.array(df_date['Date'])
 #Preprocessing data set
 df = np.array(df).reshape(-1,1)
-#df_date=np.array(df_date).reshape(-1,1)
+
 #-----------------------------------------
 #preparing training and testing data
 #-----------------------------------------
@@ -71,11 +67,11 @@ scaler = MinMaxScaler() #normalises - inverse below
 df = scaler.fit_transform(df)
 
 #Training and test sets
-train = df[:350]
-test = df[350:]
+train = df[:600]
+test = df[600:]
 
 
-test_date = df_date[350:]
+test_date = df_date[600:]
 
 def get_data(data, look_back):
   datax, datay = [],[]
