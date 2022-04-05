@@ -22,7 +22,8 @@ print('Done')
 print(data_set.tail(40))
 print(data_set.info()) #now see float 64 (aside from time serie)
 
-data_set=data_set[data_set['More Columns.GroupByLevel1Value']=='JAPANESE YEN']
+currency = 'HONG KONG DOLLAR'
+data_set=data_set[data_set['More Columns.GroupByLevel1Value']==currency]
 target_column = 'More Columns.Asset Fx Delta'
 
 df_old = data_set[target_column]
@@ -117,9 +118,9 @@ from tensorflow.keras.layers import Dense,LSTM,Bidirectional
 #Stacked LSTM:
 timesteps=x_train.shape[1]
 model=Sequential()
-model.add(LSTM(100,activation='relu', return_sequences=False, input_shape=(timesteps,n_features)))
-#model.add(LSTM(100,activation='relu', return_sequences=True, input_shape=(timesteps,n_features)))
-#model.add(LSTM(100,activation='relu'))
+#model.add(LSTM(100,activation='relu', return_sequences=False, input_shape=(timesteps,n_features)))
+model.add(LSTM(100,activation='relu', return_sequences=True, input_shape=(timesteps,n_features)))
+model.add(LSTM(100,activation='relu'))
 model.add(Dense(1))
 
 #Compiling
@@ -153,11 +154,11 @@ LSTM1day['Date'][len(LSTM1day)-1] = LSTM1day['Date'][len(LSTM1day)-2]+timedelta(
 
 #Visualizing the results with dates!
 plt.figure(figsize=(10,5))
-plt.title('LSTM',fontsize = 20)
+plt.title('LSTM ('+currency+')',fontsize = 20)
 plt.plot(TestingData['Date'], TestingData['Asset Value FX'] , label = 'Actual', color = "darkblue",linestyle="dotted")
 plt.plot(LSTM1day['Date'], LSTM1day['Asset Value FX'] , label = 'Predicted', color = "red")
 plt.xlabel('Date',fontsize = 20)
-plt.ylabel('Asset Value FX Delta in %',fontsize = 20)
+plt.ylabel('Asset Value FX Delta',fontsize = 20)
 plt.rc('legend', fontsize = 15)
 plt.xlim(TestingData['Date'][0])
 plt.xticks(fontsize = 15)
@@ -167,7 +168,7 @@ plt.xticks(rotation=70)
 plt.legend()
 
 #Visualizing the results
-plt.figure(figsize=(10,5))
+'''plt.figure(figsize=(10,5))
 plt.title('LSTM',fontsize = 20)
 plt.plot(y_testPlot , label = 'Actual', color = "darkblue",linestyle="dotted")
 plt.plot(y_predPlot , label = 'Predicted', color = "red")
@@ -179,13 +180,12 @@ plt.xlim(0.0)
 plt.xticks(fontsize = 15)
 plt.yticks(fontsize = 15)
 plt.grid(True)
-plt.legend()
+plt.legend()'''
 
 
 #-----------------------------------------
 #Extending prediction
 #-----------------------------------------
-
 PredictionRange = 30
 y_predTotal=y_pred
 newMem0 = x_test[-1]
@@ -209,11 +209,11 @@ for i in range(PredictionRange+1):
 
 #Visualizing the results with dates!
 plt.figure(figsize=(10,5))
-plt.title('LSTM - 30 days prediction',fontsize = 20)
+plt.title('LSTM - 30 days prediction ('+currency+')',fontsize = 20)
 plt.plot(LSTM30days['Date'], LSTM30days['Asset Value FX'] , label = 'Predicted', color = "red")
 plt.plot(TestingData['Date'], TestingData['Asset Value FX'], label = 'Actual', color = "darkblue",linestyle="dotted")
 plt.xlabel('Date',fontsize = 20)
-plt.ylabel('Asset Value FX Delta in %',fontsize = 20)
+plt.ylabel('Asset Value FX Delta',fontsize = 20)
 plt.rc('legend', fontsize = 15)
 plt.xticks(fontsize = 15)
 plt.yticks(fontsize = 15)
@@ -223,7 +223,7 @@ plt.grid(True)
 plt.legend()
 
 #Visualizing the results
-plt.figure(figsize=(10,5))
+'''plt.figure(figsize=(10,5))
 plt.title('LSTM - 30 days prediction',fontsize = 20)
 plt.plot(y_testPlot , label = 'Actual', color = "darkblue",linestyle="dotted")
 plt.plot(y_predTotalPlot , label = 'Predicted', color = "red")
@@ -234,24 +234,24 @@ plt.xlim(0.0)
 plt.xticks(fontsize = 15)
 plt.yticks(fontsize = 15)
 plt.grid(True)
-plt.legend()
+plt.legend()'''
 
 #-----------------------------------------
 #Get estimated hedge
 #-----------------------------------------
 date_df=pd.DataFrame(test_date,columns = ['Date'])
 print(date_df.info())
-target_date = '2022-01-17 00:00:00'
-index = date_df.loc[date_df['Date'] == target_date]
+target_date = '2022-02-16 00:00:00'
+index = LSTM30days.loc[LSTM30days['Date'] == target_date]
+target_row =  LSTM30days[LSTM30days['Date'] == target_date]
+target_value = target_row['Asset Value FX'].iloc[0]
 print(index.index)
 print("estimating hedge for ",target_date)
-print(index.index)
-print("Estimated ", y_predTotalPlot[index.index-look_back]) 
-if y_predTotalPlot[index.index-look_back] > 10000000 : #fudge to get on specific date but close enough but close enough
-  print("Required Hedge ",y_predTotalPlot[index.index-look_back]) 
+print("Estimated ", ) 
+if target_value > 10000000 : 
+  print("Required Hedge ",target_value) 
 else:
   print("No hedge required") 
-
 
 #-----------------------------------------
 #Checking the training results
