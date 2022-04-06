@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 """
 Created on Fri Mar 18 07:52:41 2022
-
 @author: baugstein
 """
 # univariate stacked lstm example
