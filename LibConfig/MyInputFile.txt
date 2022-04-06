@@ -1,0 +1,7 @@
+// Basic store information:
+name = "Books, Movies & More";
+
+// Basic store information:
+integer = 123;
+scientific = 1.e14;
+double = 1.235;
