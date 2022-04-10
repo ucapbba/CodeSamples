@@ -54,8 +54,6 @@ df = np.array(df).reshape(-1,1)
 #-----------------------------------------
 #preparing training and testing data
 #-----------------------------------------
-
-
 fig, ax = plt.subplots(figsize=(12, 12))
 ax.set(xlabel="Date",
        ylabel="Asset Value FX Delta",
@@ -209,6 +207,7 @@ for i in range(PredictionRange+1):
 
 #Visualizing the results with dates!
 plt.figure(figsize=(10,5))
+plt.grid(False)
 plt.title('LSTM - 30 days prediction ('+currency+')',fontsize = 20)
 plt.plot(LSTM30days['Date'], LSTM30days['Asset Value FX'] , label = 'Predicted', color = "red")
 plt.plot(TestingData['Date'], TestingData['Asset Value FX'], label = 'Actual', color = "darkblue",linestyle="dotted")

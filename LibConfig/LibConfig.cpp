@@ -8,7 +8,7 @@ using namespace libconfig;
 int main()
 {
     Config cfg;
-	cfg.setOptions(Config::OptionSemicolonSeparators);
+	//cfg.setOptions(Config::OptionSemicolonSeparators);
 	cfg.readFile("MyInputFile.txt");
 
 	std::string name = cfg.lookup("name");
