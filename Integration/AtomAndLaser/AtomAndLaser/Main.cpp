@@ -38,8 +38,8 @@ int main()
 
     std::cout << "Hello World!\n";
     double t0 = 0;
-    double tf = 1000;
-    double dt = 0.1;
+    double tf = 200;
+    double dt = 0.01;
     vector<phase_space> x_vec;
     vector<double> times;
 

@@ -22,18 +22,31 @@ NewtonEqns::NewtonEqns()
      Ip = 0.5;
      Up = 1;
      rtUp = std::sqrt(Up);
-     C = 0.5;
+     C = 1;
 }
 
 void NewtonEqns::operator()(const phase_space& x, phase_space& dxdt, const double t) {
 
 
-    dxdt[0] = x[2] + 2 * rtUp*std::sin(w*t); //dx/dt = 
+	dxdt[0] = x[2] +2 * rtUp*std::sin(w*t); //dx/dt = 
     dxdt[1] = x[3];                        //dy/dt = p_x
 
-    double rr = std::sqrt(x[0] * x[0] + x[1] * x[1]);
-    potParams p(16.039, 2.007, -25.543, 4.525, 0.961, 0.443);
-    double Norm = -(C + f(rr, p) - rr * fp(rr, p)) / (rr*rr*rr);
+	double Norm = 0;
+	bool effectivePotential = false;
+
+	if (effectivePotential)
+	{
+		double rr = std::sqrt(x[0] * x[0] + x[1] * x[1]);
+		potParams p(16.039, 2.007, -25.543, 4.525, 0.961, 0.443);
+		//potParams p(0.0, 0.0, 0.0, 0.0, 0.0, 0.0);
+		Norm = -(C + f(rr, p) - rr * fp(rr, p)) / (rr*rr*rr);
+	}
+	else {  //softcore
+		double a = 0.025;
+		double rra = std::sqrt(x[0] * x[0] + x[1] * x[1] + a * a);
+		Norm = -C / (rra*rra*rra);
+	}
+	
 
     dxdt[2] = x[0] * Norm; //dp_x/dt = delta(V)
     dxdt[3] = x[1] * Norm; //dp_y/dt = delta(V)
