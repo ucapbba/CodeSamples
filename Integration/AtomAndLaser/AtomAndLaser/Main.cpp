@@ -28,34 +28,54 @@ struct push_back_state_and_time
     }
 };
 
+
+void IntegrateAndOuput(double x0, double y0, double px0, double py0,double t0, double tf, double dt, NewtonEqns Newton,string filename)
+{
+	phase_space ps(4);
+	ps[0] = x0; //x0
+	ps[1] = y0;//y0
+	ps[2] = px0; //px0
+	ps[3] = py0;//py0
+
+	vector<phase_space> x_vec;
+	vector<double> times;
+
+	//Todo - CQSFA code returns x - need to understand what this is
+	//integrate_adaptive(make_controlled< error_stepper_type2 >(abs_err, rel_err), NewtEq, x, t0, tf, dt);
+	size_t steps = integrate(Newton,
+		ps, t0, tf, dt,
+		push_back_state_and_time(x_vec, times));
+
+	std::ofstream outputFile;
+	outputFile.open(filename);
+	for (size_t i = 0; i <= steps; i++)
+	{
+		cout << times[i] << '\t' << x_vec[i][0] << '\t' << x_vec[i][1] <<  x_vec[i][2] << '\t' << x_vec[i][3] <<'\n';
+		outputFile << times[i] << '\t' << x_vec[i][0] << '\t' << x_vec[i][1] <<'\t'<<x_vec[i][2] << '\t' << x_vec[i][3]<<'\n';;
+	}
+	outputFile.close();
+}
+
 int main()
 {
-    phase_space ps(4);
-    ps[0] = 5.0; //x0
-    ps[1] = 1.0;//y0
-    ps[2] = 0.1; //px0
-    ps[3] = 0.1;//py0
 
-    std::cout << "Hello World!\n";
-    double t0 = 0;
-    double tf = 200;
-    double dt = 0.01;
-    vector<phase_space> x_vec;
-    vector<double> times;
+    NewtonEqns Coulomb(true,false,false);
+	NewtonEqns Cos7(false,true, false);
+	NewtonEqns Volker(false, false,true);
+	NewtonEqns None(false, false, false);
+   
 
-    NewtonEqns Newton;
-    //Todo - CQSFA code returns x - need to understand what this is
-    //integrate_adaptive(make_controlled< error_stepper_type2 >(abs_err, rel_err), NewtEq, x, t0, tf, dt);
-   size_t steps = integrate(Newton,
-        ps, t0, tf, dt,
-        push_back_state_and_time(x_vec, times));
+	double x0 = 5.0; //x0
+	double y0 = 1.0;//y0
+	double px0 = 0.0; //px0
+	double py0 = 0.0;//py0
+	double t0 = 0;
+	double tf = 200;
+	double dt = 0.001;
 
-   std::ofstream outputFile;
-   outputFile.open("output.txt");
-   for (size_t i = 0; i <= steps; i++)
-   {
-       cout << times[i] << '\t' << x_vec[i][0] << '\t' << x_vec[i][1] << '\n';
-       outputFile << times[i] << '\t' << x_vec[i][0] << '\t' << x_vec[i][1] << '\n';;
-   }
-   outputFile.close();
+
+	IntegrateAndOuput(x0, y0, px0, py0, t0, tf, dt, Coulomb,"outputCoulomb.txt");
+	IntegrateAndOuput(x0, y0, px0, py0, t0, tf, dt, Cos7, "outputCos7.txt");
+	IntegrateAndOuput(x0, y0, px0, py0, t0, tf, dt, Volker, "outputVoker.txt");
+	IntegrateAndOuput(x0, y0, px0, py0, t0, tf, dt, None, "outputNone.txt");
 }
