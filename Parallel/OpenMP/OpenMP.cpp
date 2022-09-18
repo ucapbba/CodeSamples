@@ -14,8 +14,9 @@ int main()
 
     int N = 10000000;
     std::vector<int>* BinorbInd = new std::vector<int>;
-   // BinorbInd->reserve(N); //required to stop crash
-    #pragma omp parallel for//num_threads(NThreads)
+    BinorbInd->reserve(N); //required to stop crash, however for big arrays use ordered
+    //#pragma omp parallel for ordered num_threads(NThreads)
+    #pragma omp parallel for num_threads(NThreads)
     for (int i = 0; i < N; ++i)
     {
         //cout << i << endl;
