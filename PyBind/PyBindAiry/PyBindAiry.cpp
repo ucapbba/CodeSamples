@@ -12,6 +12,10 @@ using namespace std::complex_literals;
 namespace py = pybind11;
 int main()
 {
+	std::string str = "C:/Python/Python39/";
+	std::wstring widestr = std::wstring(str.begin(), str.end());
+	Py_SetPythonHome(widestr.c_str());
+
 	pybind11::scoped_interpreter guard{};
 	pybind11::exec("print('hello world')");
 
