@@ -26,8 +26,11 @@ currency = 'HONG KONG DOLLAR'
 data_set=data_set[data_set['More Columns.GroupByLevel1Value']==currency]
 target_column = 'More Columns.Asset Fx Delta'
 
+
+
 df_old = data_set[target_column]
 df_date_old= data_set['Date']
+df_date_old_test= data_set[['Date']]
 ##fill missing values
 df=pd.DataFrame(columns=[target_column])
 df_date= pd.DataFrame(columns=['Date'])

@@ -19,14 +19,25 @@ initCondVars::initCondVars(int a, int b)
 	variable1 = a;
 	variable2 = b;
 }
-bool myfunctionInit(initCondVars i, initCondVars j) { return (i.variable2 > j.variable2); }
+bool myfunctionInit1(initCondVars i, initCondVars j) { return (i.variable1 < j.variable1); }
+bool myfunctionInit2(initCondVars i, initCondVars j) { return (i.variable2 > j.variable2); }
+bool myfunctionInit3(initCondVars i, initCondVars j) { 
+	if (i.variable1 != j.variable1)
+	{
+		return i.variable1 < j.variable1;
+	}
+	else
+	{
+		 i.variable1 > j.variable1;
+	}
+}
 int main()
 {
 
 
 #pragma region sort_test
 	initCondVars a1(5, 1);
-	initCondVars a2(4, 2);
+	initCondVars a2(3, 2);
 	initCondVars a3(3, 3);
 	initCondVars a4(2, 4);
 	initCondVars a5(1, 5);
@@ -37,7 +48,7 @@ int main()
 	sortVector.push_back(a4);
 	sortVector.push_back(a5);
 
-	std::sort(sortVector.begin(), sortVector.end(), myfunctionInit);
+	std::sort(sortVector.begin(), sortVector.end(), myfunctionInit3);
 #pragma endregion	
 	
 #pragma region other_std
