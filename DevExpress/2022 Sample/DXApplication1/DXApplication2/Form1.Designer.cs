@@ -35,9 +35,9 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.dockPanel2 = new DevExpress.XtraBars.Docking.DockPanel();
             this.dockPanel2_Container = new DevExpress.XtraBars.Docking.ControlContainer();
+            this.textBox2 = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dockManager1)).BeginInit();
             this.dockPanel1.SuspendLayout();
             this.dockPanel1_Container.SuspendLayout();
@@ -68,12 +68,13 @@
             // dockPanel1
             // 
             this.dockPanel1.Controls.Add(this.dockPanel1_Container);
-            this.dockPanel1.Dock = DevExpress.XtraBars.Docking.DockingStyle.Left;
+            this.dockPanel1.Dock = DevExpress.XtraBars.Docking.DockingStyle.Top;
+            this.dockPanel1.FloatVertical = true;
             this.dockPanel1.ID = new System.Guid("77e672dc-519e-4431-af28-71e5480d40db");
             this.dockPanel1.Location = new System.Drawing.Point(0, 0);
             this.dockPanel1.Name = "dockPanel1";
             this.dockPanel1.OriginalSize = new System.Drawing.Size(200, 200);
-            this.dockPanel1.Size = new System.Drawing.Size(200, 278);
+            this.dockPanel1.Size = new System.Drawing.Size(778, 200);
             this.dockPanel1.Text = "dockPanel1";
             // 
             // dockPanel1_Container
@@ -81,7 +82,7 @@
             this.dockPanel1_Container.Controls.Add(this.textBox1);
             this.dockPanel1_Container.Location = new System.Drawing.Point(3, 26);
             this.dockPanel1_Container.Name = "dockPanel1_Container";
-            this.dockPanel1_Container.Size = new System.Drawing.Size(193, 249);
+            this.dockPanel1_Container.Size = new System.Drawing.Size(772, 170);
             this.dockPanel1_Container.TabIndex = 0;
             // 
             // textBox1
@@ -94,25 +95,33 @@
             // dockPanel2
             // 
             this.dockPanel2.Controls.Add(this.dockPanel2_Container);
-            this.dockPanel2.Dock = DevExpress.XtraBars.Docking.DockingStyle.Right;
+            this.dockPanel2.Dock = DevExpress.XtraBars.Docking.DockingStyle.Bottom;
+            this.dockPanel2.FloatVertical = true;
             this.dockPanel2.ID = new System.Guid("bb31cf08-7086-4c7e-b29a-2cf39e84a2b8");
-            this.dockPanel2.Location = new System.Drawing.Point(432, 0);
+            this.dockPanel2.Location = new System.Drawing.Point(0, 273);
             this.dockPanel2.Name = "dockPanel2";
             this.dockPanel2.OriginalSize = new System.Drawing.Size(200, 200);
-            this.dockPanel2.Size = new System.Drawing.Size(200, 278);
+            this.dockPanel2.Size = new System.Drawing.Size(778, 200);
             this.dockPanel2.Text = "dockPanel2";
             // 
             // dockPanel2_Container
             // 
             this.dockPanel2_Container.Controls.Add(this.textBox2);
-            this.dockPanel2_Container.Location = new System.Drawing.Point(4, 26);
+            this.dockPanel2_Container.Location = new System.Drawing.Point(3, 27);
             this.dockPanel2_Container.Name = "dockPanel2_Container";
-            this.dockPanel2_Container.Size = new System.Drawing.Size(193, 249);
+            this.dockPanel2_Container.Size = new System.Drawing.Size(772, 170);
             this.dockPanel2_Container.TabIndex = 0;
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(36, 57);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(100, 21);
+            this.textBox2.TabIndex = 0;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(271, 26);
+            this.button1.Location = new System.Drawing.Point(239, 235);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 0;
@@ -123,7 +132,7 @@
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(271, 87);
+            this.checkBox1.Location = new System.Drawing.Point(361, 239);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(77, 17);
             this.checkBox1.TabIndex = 3;
@@ -131,18 +140,11 @@
             this.checkBox1.UseVisualStyleBackColor = true;
             this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(36, 57);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 21);
-            this.textBox2.TabIndex = 0;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(632, 278);
+            this.ClientSize = new System.Drawing.Size(778, 473);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.dockPanel2);
