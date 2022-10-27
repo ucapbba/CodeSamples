@@ -1,4 +1,6 @@
-﻿namespace DXApplication2
+﻿using System.Windows.Forms;
+
+namespace DXApplication2
 {
     partial class Form1
     {
@@ -32,6 +34,7 @@
             this.dockManager1 = new DevExpress.XtraBars.Docking.DockManager(this.components);
             this.dockPanel1 = new DevExpress.XtraBars.Docking.DockPanel();
             this.dockPanel1_Container = new DevExpress.XtraBars.Docking.ControlContainer();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.dockPanel2 = new DevExpress.XtraBars.Docking.DockPanel();
             this.dockPanel2_Container = new DevExpress.XtraBars.Docking.ControlContainer();
@@ -79,11 +82,25 @@
             // 
             // dockPanel1_Container
             // 
+            this.dockPanel1_Container.Controls.Add(this.tableLayoutPanel1);
             this.dockPanel1_Container.Controls.Add(this.textBox1);
             this.dockPanel1_Container.Location = new System.Drawing.Point(3, 26);
             this.dockPanel1_Container.Name = "dockPanel1_Container";
             this.dockPanel1_Container.Size = new System.Drawing.Size(772, 170);
             this.dockPanel1_Container.TabIndex = 0;
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(213, 25);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.AutoSize, 20F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(375, 124);
+            this.tableLayoutPanel1.TabIndex = 1;
+            this.tableLayoutPanel1.Controls.Add(new Label { Text = "Instrument   ", Anchor = AnchorStyles.Left, AutoSize = false }, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(new Label { Text = "Folio        ", Anchor = AnchorStyles.Left, AutoSize = false }, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(new Label { Text = "Folio Path   ", Anchor = AnchorStyles.Left, AutoSize = false }, 2, 0);
+            this.tableLayoutPanel1.CellBorderStyle = TableLayoutPanelCellBorderStyle.Single;
             // 
             // textBox1
             // 
@@ -174,6 +191,7 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
     }
 }
 
