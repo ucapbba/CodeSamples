@@ -22,14 +22,13 @@ namespace DXApplication2
             {
                 for (int i = 0; i < this.tableLayoutPanel1.RowCount * 3; i++)
                 {
-                    this.tableLayoutPanel1.Controls.RemoveAt(3); //this is horrific but it works 
+                    this.tableLayoutPanel1.Controls.RemoveAt(3); //repeatedly remove first value
                     
                 }
                 this.tableLayoutPanel1.RowCount = 0;
                 this.tableLayoutPanel1.Update();
             }
-
-
+ 
         }
 
             private void button1_Click(object sender, EventArgs e)
@@ -42,6 +41,16 @@ namespace DXApplication2
             this.tableLayoutPanel1.Controls.Add(new Label { Text = "My Folio Path", Anchor = AnchorStyles.Left, AutoSize = true }, 2, this.tableLayoutPanel1.RowCount);
             this.tableLayoutPanel1.Refresh();
 
+            //int currentIndex = this.tableLayoutPanel1.RowCount * 3 - 1;
+
+            this.tableLayoutPanel1.Controls[3].AccessibleRole = AccessibleRole.Text;    
+            this.tableLayoutPanel1.Controls[3].MouseHover += new System.EventHandler(this.mouse_hover);
+            ToolTip tip = new ToolTip();
+            tip.SetToolTip(this.tableLayoutPanel1.Controls[3], "click to copy");
+            this.tableLayoutPanel1.Controls[3].Click += new System.EventHandler(this.name_click);
+      
+
+
             if (this.tableLayoutPanel1.RowCount > 5)
             {
                 Size minSize = new Size(this.Size.Width + 500, this.Size.Height);
@@ -49,8 +58,18 @@ namespace DXApplication2
             }
 
         }
+        private void mouse_hover(object sender, EventArgs e)
+        {
+          
+        }
+        private void name_click(object sender, EventArgs e)
+        {
+            string name = this.tableLayoutPanel1.Controls[3].Text;
+            System.Windows.Forms.Clipboard.SetText(name);
+        }
 
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+
+            private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
             if(this.checkBox1.Checked)
             {
@@ -62,42 +81,7 @@ namespace DXApplication2
             }
         }
 
-        public static class TableLayoutHelper
-        {
-            public static void RemoveArbitraryRow(TableLayoutPanel panel, int rowIndex)
-            {
-                if (rowIndex >= panel.RowCount)
-                {
-                    return;
-                }
-
-                // delete all controls of row that we want to delete
-                for (int i = 0; i < panel.ColumnCount; i++)
-                {
-                    var control = panel.GetControlFromPosition(i, rowIndex);
-                    panel.Controls.Remove(control);
-                }
-
-                // move up row controls that comes after row we want to remove
-                for (int i = rowIndex + 1; i < panel.RowCount; i++)
-                {
-                    for (int j = 0; j < panel.ColumnCount; j++)
-                    {
-                        var control = panel.GetControlFromPosition(j, i);
-                        if (control != null)
-                        {
-                            panel.SetRow(control, i - 1);
-                        }
-                    }
-                }
-
-                var removeStyle = panel.RowCount - 1;
-
-                if (panel.RowStyles.Count > removeStyle)
-                    panel.RowStyles.RemoveAt(removeStyle);
-
-                panel.RowCount--;
-            }
-        }
+       
+        
     }
 }
