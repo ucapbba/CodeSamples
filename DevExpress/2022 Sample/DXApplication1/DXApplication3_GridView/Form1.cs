@@ -11,10 +11,27 @@ namespace DXApplication3_GridView
 {
     public partial class Form1 : DevExpress.XtraEditors.XtraForm
     {
+        private int rows = 10;
+
         public Form1()
         {
             InitializeComponent();
-            gridControl1.DataSource = DataHelper.GetData(10);
+            gridControl1.DataSource = DataHelper.GetData(rows);
+        }
+
+        private void simpleButton1_Click(object sender, EventArgs e)
+        {
+            rows += 10;
+            gridControl1.DataSource = DataHelper.GetData(rows);
+        }
+
+        private void simpleButton2_Click(object sender, EventArgs e)
+        {
+            if (rows < 10) return;
+            rows -= 10;
+            
+            gridControl1.DataSource = DataHelper.GetData(rows);
+
         }
     }
 
