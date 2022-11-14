@@ -1,8 +1,10 @@
-﻿using System;
+﻿using DevExpress.Utils;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
@@ -17,6 +19,8 @@ namespace DXApplication3_GridView
         {
             InitializeComponent();
             gridControl1.DataSource = DataHelper.GetData(rows);
+            gridView1.Columns.ToList().LastOrDefault(a => a.CustomizationSearchCaption == "Position Id").AppearanceCell.TextOptions.HAlignment = HorzAlignment.Far;
+            gridView1.OptionsView.ColumnAutoWidth = true;
         }
 
         private void simpleButton1_Click(object sender, EventArgs e)
@@ -40,8 +44,9 @@ namespace DXApplication3_GridView
         public Record()
         {
         }
-        int positionId;
-        public int posID
+        string positionId;
+        [DisplayName("Position Id")]
+        public string posID
         {
             get { return positionId; }
             set
@@ -69,25 +74,11 @@ namespace DXApplication3_GridView
             }
         }
 
-        public static BindingList<Record> GetData(int count)
-        {
-            BindingList<Record> records = new BindingList<Record>();
-            Random rnd = new Random();
-            for (int i = 0; i < count; i++)
-            {
-                int n = rnd.Next(10);
-                records.Add(new Record()
-                {
-                    positionId = i + 100,
-                });
-            };
-            return records;
-        }
     }
 
     public class DataHelper
     {
-        public static string[] instruments = new string[] { "Apple", "Orangle", "Romero y tomillo", "ABN Amro" };
+        public static string[] instruments = new string[] { "Apple sadfsdfsdfsadfsdfsdfsdfwqesdfwqe", "Orangle sadfsdfsdsadfsdfsdfsdfwqefsdfwqe", "Romero y tomillo sadfsdfssadfsdfsdfsdfwqedfsdfwqe", "ABN Amro sadfsdsadfsdfsdfsdfwqefsdfsdfwqe" };
         public static BindingList<Record> GetData(int count)
         {
 
@@ -97,9 +88,10 @@ namespace DXApplication3_GridView
             for (int i = 0; i < count; i++)
             {
                 int n = rnd.Next(10);
+                double value = ((i + 11111111) / 100.00);
                 records.Add(new Record()
                 {
-                    posID = i + 100,
+                    posID = value.ToString("N0", CultureInfo.InvariantCulture),
                     InstrumentName = instruments[i % instruments.Length],
                 });
             };

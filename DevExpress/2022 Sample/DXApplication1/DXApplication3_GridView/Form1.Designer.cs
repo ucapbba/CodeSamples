@@ -51,10 +51,10 @@ namespace DXApplication3_GridView
             // 
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.Name = "gridView1";
-            // 
+            this.gridControl1.UseEmbeddedNavigator = true;
             // simpleButton1
             // 
-            this.simpleButton1.Location = new System.Drawing.Point(492, 33);
+                this.simpleButton1.Location = new System.Drawing.Point(492, 33);
             this.simpleButton1.Name = "simpleButton1";
             this.simpleButton1.Size = new System.Drawing.Size(75, 23);
             this.simpleButton1.TabIndex = 1;
