@@ -20,6 +20,7 @@ public:
 	protected:
 	virtual void DoDataExchange(CDataExchange* pDX);	// DDX/DDV support
 	void LoadListBox();
+	void LoadListCntrl();
 
 // Implementation
 protected:
@@ -34,5 +35,6 @@ protected:
 public:
 	// Control Variable
 	CListBox m_listBox;
+	CListCtrl m_listCtrl;
 	afx_msg void OnLbnSelchangeList1();
 };

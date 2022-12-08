@@ -60,6 +60,7 @@ void CMFCApplication1Dlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialogEx::DoDataExchange(pDX);
 	DDX_Control(pDX, IDC_LIST1, m_listBox);
+	DDX_Control(pDX, IDC_LIST2, m_listCtrl);
 }
 
 BEGIN_MESSAGE_MAP(CMFCApplication1Dlg, CDialogEx)
@@ -171,15 +172,36 @@ void CMFCApplication1Dlg::LoadListBox() {
 	}
 }
 
-//BOOL CMFCApplication1Dlg::OnInitDialog() {
-//	CDialogEx::OnInitDialog();
-//
-//	// Set the icon for this dialog. The framework does this automatically
-//	// when the application's main window is not a dialog
-//	SetIcon(m_hIcon, TRUE);       // Set big icon
-//	SetIcon(m_hIcon, FALSE);      // Set small icon
-//
-//	// TODO: Add extra initialization here
-//	LoadListBox();
-//	return TRUE; // return TRUE unless you set the focus to a control
-//}
+void CMFCApplication1Dlg::LoadListCntrl() {
+	//m_listCtrl.InsertColumn(0, "Page");
+	m_listCtrl.SetColumnWidth(0, 60);
+	//m_listCtrl.InsertColumn(1, "Last Modified");
+	m_listCtrl.SetColumnWidth(1, 80);
+	//m_listCtrl.InsertColumn(2, "Prioirty");
+	m_listCtrl.SetColumnWidth(2, 50);
+	m_listCtrl.SendMessage(LVM_SETEXTENDEDLISTVIEWSTYLE, 0,	LVS_EX_FULLROWSELECT);
+
+	/*AddData(m_listCtrl, 0, 0, "First");
+	AddData(m_listCtrl, 0, 1, "Jan 2011");
+	AddData(m_listCtrl, 0, 2, "Medium");
+	AddData(m_listCtrl, 1, 0, "Second");
+	AddData(m_listCtrl, 1, 1, "Feb 2011");
+	AddData(m_listCtrl, 1, 2, "High");*/
+}
+
+static void AddData(CListCtrl& ctrl, int row, int col, const char* str)
+
+{
+	LVITEM lv;
+	lv.iItem = row;
+	lv.iSubItem = col;
+	lv.pszText = (LPWSTR)str;
+	lv.mask = LVIF_TEXT;
+	if (col == 0)
+
+		ctrl.InsertItem(&lv);
+
+	else
+
+		ctrl.SetItem(&lv);
+}
