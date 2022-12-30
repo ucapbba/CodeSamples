@@ -16,6 +16,7 @@ namespace DXApplication3_TreeList
         {
             InitializeComponent();
             treeList1.DataSource = DataHelper.CreateTLData(10);
+            DataTable table = (DataTable)treeList1.DataSource;
         }
     }
 

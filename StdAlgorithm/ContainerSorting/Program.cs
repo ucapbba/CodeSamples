@@ -21,6 +21,10 @@ namespace ContainerSorting
 
 
             List<container> orderedlist = myList.OrderBy(a => a.name).ToList();
+           
+            var star = orderedlist.Find(a => a.name == "*");
+            orderedlist.RemoveAt(0);
+            orderedlist.Add(star);
 
         }
     }

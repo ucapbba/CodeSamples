@@ -7,6 +7,8 @@
 #include "MFCApplication1.h"
 #include "MFCApplication1Dlg.h"
 #include "afxdialogex.h"
+#include "SphInc/gui/SphEditElement.h"
+#include "SpecificDialog.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -51,7 +53,7 @@ END_MESSAGE_MAP()
 
 
 CMFCApplication1Dlg::CMFCApplication1Dlg(CWnd* pParent /*=nullptr*/)
-	: CDialogEx(IDD_MFCAPPLICATION1_DIALOG, pParent)
+	: CDialogEx(IDD_MFCAPPLICATION1_DIALOG, pParent), SpecificDialog()
 {
 	m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
 }
@@ -61,6 +63,12 @@ void CMFCApplication1Dlg::DoDataExchange(CDataExchange* pDX)
 	CDialogEx::DoDataExchange(pDX);
 	DDX_Control(pDX, IDC_LIST1, m_listBox);
 	DDX_Control(pDX, IDC_LIST2, m_listCtrl);
+	//fElementCount = 1;
+ //  fElementList = new sophis::gui::CSRElement * [fElementCount];
+ //  if (fElementList) 
+ //  {
+ //      fElementList[0] = new sophis::gui::CSREditDouble(this, IDC_EDIT1 -ID_ITEM_SHIFT, 2, 0, 1000000000., 10.0);
+ //  } 
 }
 
 BEGIN_MESSAGE_MAP(CMFCApplication1Dlg, CDialogEx)

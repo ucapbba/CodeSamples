@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.1585
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.33027.164
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HarmonicOscillator", "HarmonicOscillator\HarmonicOscillator.vcxproj", "{84C195A1-A854-49CB-A9B5-6F3DF5B53784}"
 EndProject
@@ -12,6 +12,8 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "stdLib", "stdLib\stdLib\stdLib.vcxproj", "{60A7737B-8A2C-4596-AA5B-6DA937573B7D}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LambdaIntegrationExample", "LambdaIntegrationExample\LambdaIntegrationExample.vcxproj", "{580FB9FE-CA82-428E-908F-DC721555178E}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PulseIntegration", "PulseIntegration\PulseIntegration.vcxproj", "{CF5097FA-F398-41D3-A601-B3B69F98CB9E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -61,6 +63,14 @@ Global
 		{580FB9FE-CA82-428E-908F-DC721555178E}.Release|x64.Build.0 = Release|x64
 		{580FB9FE-CA82-428E-908F-DC721555178E}.Release|x86.ActiveCfg = Release|Win32
 		{580FB9FE-CA82-428E-908F-DC721555178E}.Release|x86.Build.0 = Release|Win32
+		{CF5097FA-F398-41D3-A601-B3B69F98CB9E}.Debug|x64.ActiveCfg = Debug|x64
+		{CF5097FA-F398-41D3-A601-B3B69F98CB9E}.Debug|x64.Build.0 = Debug|x64
+		{CF5097FA-F398-41D3-A601-B3B69F98CB9E}.Debug|x86.ActiveCfg = Debug|Win32
+		{CF5097FA-F398-41D3-A601-B3B69F98CB9E}.Debug|x86.Build.0 = Debug|Win32
+		{CF5097FA-F398-41D3-A601-B3B69F98CB9E}.Release|x64.ActiveCfg = Release|x64
+		{CF5097FA-F398-41D3-A601-B3B69F98CB9E}.Release|x64.Build.0 = Release|x64
+		{CF5097FA-F398-41D3-A601-B3B69F98CB9E}.Release|x86.ActiveCfg = Release|Win32
+		{CF5097FA-F398-41D3-A601-B3B69F98CB9E}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

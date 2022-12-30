@@ -29,6 +29,8 @@ namespace DXApplication3_GridView
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
@@ -59,6 +61,8 @@ namespace DXApplication3_GridView
             this.simpleButton1.Size = new System.Drawing.Size(75, 23);
             this.simpleButton1.TabIndex = 1;
             this.simpleButton1.Text = "Add Rows";
+            this.simpleButton1.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("a-to-z")));
+            //this.simpleButton1.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("a-to-z")));
             this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click);
             // 
             // simpleButton2

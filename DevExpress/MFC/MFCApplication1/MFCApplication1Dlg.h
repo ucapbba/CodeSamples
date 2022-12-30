@@ -3,10 +3,11 @@
 //
 
 #pragma once
-
+#include "SphInc/gui/SphDialog.h"
+#include "SpecificDialog.h"
 
 // CMFCApplication1Dlg dialog
-class CMFCApplication1Dlg : public CDialogEx
+class CMFCApplication1Dlg : public CDialogEx, public SpecificDialog
 {
 // Construction
 public:

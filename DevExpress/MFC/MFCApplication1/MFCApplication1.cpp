@@ -75,9 +75,9 @@ BOOL CMFCApplication1App::InitInstance()
 	SpecificDialog* myDialog = new SpecificDialog();
 	MessageBox(nullptr, TEXT("Click to load CSRFitDialog"), TEXT("Message"), MB_OK);
 
-	myDialog->DoDialog();
-	myDialog->OpenDialog();
-	MessageBox(nullptr, TEXT("CSRFitDialog stuff done"), TEXT("Message"), MB_OK);
+	//myDialog->DoDialog();  //doesn't work
+	//myDialog->OpenDialog();
+	//MessageBox(nullptr, TEXT("CSRFitDialog stuff done"), TEXT("Message"), MB_OK);
 
 	CMFCApplication1Dlg dlg;
 	m_pMainWnd = &dlg;

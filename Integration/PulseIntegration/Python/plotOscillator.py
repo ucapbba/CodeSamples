@@ -12,8 +12,10 @@ data = pd.DataFrame(data)
 
 
 t = data[0]
-x = data[1]
-plt.plot(t, x,'r',label='position')
-plt.xlabel("time")
+AInt = data[1]
+A = data[2]
+plt.plot(t, AInt,'r',label='AInt')
+plt.plot(t, A,'b',label='AField')
+plt.xlabel("time (cycles)")
 plt.legend(loc='upper right', frameon=False)
 plt.show()
