@@ -8,7 +8,7 @@
 using namespace std;
 
 std::vector<AIntContainer> InputOutput::AIntVector;
-
+//
 void InputOutput::write(const vec& x, const double t)
 {
     Pulse pulse(nCycle, phi, Up);
@@ -22,10 +22,22 @@ void InputOutput::write(const vec& x, const double t)
     populateVector(t, x[0]);
 }
 
+void InputOutput::writeComplex(const dcmplx& x, const dcmplx t)
+{
+    Pulse pulse(nCycle, phi, Up);
+    cout << t.real() << '\t' <<t.imag() << '\t' << x.real() << '\t' << x.imag() << '\t' << pulse.Afield(t).real() << '\t' << pulse.Afield(t).imag() << endl;
+
+    std::ofstream outputFile;
+    outputFile.open("output.txt", std::ios_base::app);
+    outputFile << t.real()/2.0/Pi << '\t' <<t.imag() /2.0/Pi << '\t' << x.real() << '\t' << x.imag() << '\t' << pulse.Afield(t).real() << '\t' << pulse.Afield(t).imag() << '\n';;
+    outputFile.close();
+
+    //populateVector(t, x[0]);
+}
+
 void InputOutput::populateVector(double time, double AInt)
 {
     AIntContainer container(time,AInt);
-   
     AIntVector.push_back(container);
 }
 

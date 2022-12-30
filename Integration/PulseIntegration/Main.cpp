@@ -18,13 +18,25 @@ int main()
 {
     InputOutput::clear_file("output.txt");
     InputOutput::ClearVector();
-  /*  vec x = 0;*/
+
     vec x(2);
     x[0] = 0.0; //Afield
     x[1] = 0.0; //A2Field
-    integrate( Pulse(nCycle,phi,Up), x, 0.0, nCycle*2*Pi, 0.1, InputOutput::write);
-
+    double t0 = 0; 
+    double tf = nCycle * 2 * Pi;
+    double dt = 0.1;
+    integrate(Pulse(nCycle, phi, Up), x, t0, tf, dt, InputOutput::write);  
+   
     //here add the logic to calculate the definte integral between 2 arbitrary times 
-    double definiteIntegral = InputOutput::AIntVector[10].AInt - InputOutput::AIntVector[5].AInt;
+    //double definiteIntegral = InputOutput::AIntVector[10].AInt - InputOutput::AIntVector[5].AInt;
+}
+
+void integrateComplex()
+{
+    dcmplx x(0, 1);
+    dcmplx t0(0, 0);
+    dcmplx tf(nCycle * 2.0 * Pi, 0);
+    dcmplx dt(0.1, 0);
+    //integrate(Pulse(nCycle, phi, Up), x, t0, tf, dt, InputOutput::write);  //does not work with complex bounds
 }
 
