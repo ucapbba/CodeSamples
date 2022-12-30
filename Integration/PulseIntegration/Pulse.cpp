@@ -1,9 +1,10 @@
 #include "Pulse.h"
-#include <vector>
 
-void Pulse::operator()(const double x, double& dxdt, const double t) const
+void Pulse::operator()(const vec& x, vec& dxdt, const double t) const
 {
-    dxdt = Afield(t);
+ /*   dxdt = Afield(t);*/
+    dxdt[0] = Afield(t);
+    dxdt[1] = A2field(t);
 }
 
 double Pulse::Afield(double t) const
