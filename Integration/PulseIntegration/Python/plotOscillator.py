@@ -23,3 +23,15 @@ plt.plot(t, A,'b',label='AField')
 plt.xlabel("time (cycles)")
 plt.legend(loc='upper right', frameon=False)
 plt.show()
+
+'''#complex
+t = data[0]
+AInt = data[2]
+A = data[3]
+plt.plot(t, AInt,'r',label='AInt')
+plt.plot(t, A,'b',label='AField')
+#plt.plot(t, A2Int,'r',label='A2Int')
+#plt.plot(t, A2,label='A2')
+plt.xlabel("time (cycles)")
+plt.legend(loc='upper right', frameon=False)
+plt.show()'''
