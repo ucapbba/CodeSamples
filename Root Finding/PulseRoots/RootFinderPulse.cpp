@@ -3,17 +3,8 @@
 #include <iostream>
 
 
-int function(const gsl_vector * coords, void *params,
-    gsl_vector * f)
-{
-    Pulse * myPulse = (Pulse*)params;
-    const double t = gsl_vector_get(coords, 0); 
-    const double f1 = myPulse->GetAField(t);
-    gsl_vector_set(f, 0, f1);
-    return GSL_SUCCESS;
-}
 
-double RootFinder::GetCrossingTime(Pulse myPulse,double guess)
+double RootFinder::GetCrossingTime(Pulse myPulse,double guess, int (*func)(const gsl_vector* coords, void* params, gsl_vector* f))
 {
     const gsl_multiroot_fsolver_type *T;
     gsl_multiroot_fsolver *s;
@@ -22,7 +13,7 @@ double RootFinder::GetCrossingTime(Pulse myPulse,double guess)
     size_t iter = 0;
     const size_t n = 1;
 
-    gsl_multiroot_function f = { &function, n, &myPulse };
+    gsl_multiroot_function f = { func, n, &myPulse };
 
     double init_coords[1] = { guess }; // expect return at 1st field crossing
     gsl_vector *coords = gsl_vector_alloc(n);
