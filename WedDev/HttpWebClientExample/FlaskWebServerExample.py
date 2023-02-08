@@ -29,6 +29,10 @@ def add_income():
     incomes.append(request.get_json())
     return '', 204
 
+@app.route('/test', methods=['POST', 'GET'])
+def dotest():
+      print ('testing')
+
 # main driver function
 if __name__ == '__main__': 
     # run() method of Flask class runs the application
