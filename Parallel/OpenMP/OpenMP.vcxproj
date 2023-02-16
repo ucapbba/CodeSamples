@@ -190,6 +190,7 @@
       <Optimization>MaxSpeed</Optimization>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <AdditionalOptions>-openmp %(AdditionalOptions)</AdditionalOptions>
+      <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -223,6 +224,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="OpenMP.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="TestFucntions.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
