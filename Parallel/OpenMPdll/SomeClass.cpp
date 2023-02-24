@@ -6,16 +6,18 @@ using namespace std;
 void SomeClass::DoStuff()
 {
 	cout << "Doing stuff" << endl;
-    int N = 10000000;
+   int N = 8;
+    int NThreads = 4;
     std::vector<int>* BinorbInd = new std::vector<int>;
     BinorbInd->reserve(N); //required to stop crash, however for big arrays use ordered
-    //#pragma omp parallel for ordered num_threads(N)
-    #pragma omp parallel for num_threads(N)
-    for (int i = 0; i < N; ++i)
+    //#pragma omp parallel for ordered num_threads(NThreads) ??
+    #pragma omp parallel num_threads(NThreads) 
     {
-        //cout << i << endl;
-        BinorbInd->push_back(i);
+        #pragma omp for 
+        for (int i = 0; i < N; ++i)
+        {   
+            #pragma omp critical //this ensures only 1 thread at a time pushes back 
+            BinorbInd->push_back(i);
+        }
     }
-    #pragma omp ordered
-    cout << BinorbInd->size() << endl;
 }
