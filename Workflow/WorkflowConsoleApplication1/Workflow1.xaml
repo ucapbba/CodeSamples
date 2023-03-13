@@ -28,10 +28,24 @@
       <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
       <AssemblyReference>System.ServiceModel</AssemblyReference>
       <AssemblyReference>System.ServiceModel.Activities</AssemblyReference>
+      <AssemblyReference>System.Windows.Forms</AssemblyReference>
+      <AssemblyReference>System.Workflow.ComponentModel</AssemblyReference>
       <AssemblyReference>System.Xaml</AssemblyReference>
       <AssemblyReference>System.Xml</AssemblyReference>
       <AssemblyReference>System.Xml.Linq</AssemblyReference>
-      <AssemblyReference>System.Workflow.ComponentModel</AssemblyReference>
+      <AssemblyReference>DevExpress.BonusSkins.v22.1</AssemblyReference>
+      <AssemblyReference>DevExpress.Data.Desktop.v22.1</AssemblyReference>
+      <AssemblyReference>DevExpress.Data.v22.1</AssemblyReference>
+      <AssemblyReference>DevExpress.Utils.v22.1</AssemblyReference>
+      <AssemblyReference>DevExpress.Sparkline.v22.1.Core</AssemblyReference>
+      <AssemblyReference>DevExpress.XtraEditors.v22.1</AssemblyReference>
+      <AssemblyReference>DevExpress.Printing.v22.1.Core</AssemblyReference>
+      <AssemblyReference>DevExpress.Drawing.v22.1</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.DataAnnotations</AssemblyReference>
+      <AssemblyReference>System.Data.Linq</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System.Deployment</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
       <AssemblyReference>mscorlib</AssemblyReference>
       <AssemblyReference>WorkflowConsoleApplication1</AssemblyReference>
     </sco:Collection>
@@ -39,6 +53,7 @@
   <Sequence sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="variable1" />
+      <Variable x:TypeArguments="x:String" Name="variable2" />
     </Sequence.Variables>
     <local:AnotherActivity sap2010:WorkflowViewState.IdRef="AnotherActivity_1">
       <local:AnotherActivity.TextOut>
@@ -47,26 +62,31 @@
         </OutArgument>
       </local:AnotherActivity.TextOut>
     </local:AnotherActivity>
-    <local:CodeActivity1 sap2010:WorkflowViewState.IdRef="CodeActivity1_1">
+    <local:CodeActivity1 sap2010:WorkflowViewState.IdRef="CodeActivity1_2">
       <local:CodeActivity1.Text>
         <InArgument x:TypeArguments="x:String">
           <mca:CSharpValue x:TypeArguments="x:String">variable1</mca:CSharpValue>
         </InArgument>
       </local:CodeActivity1.Text>
+      <local:CodeActivity1.TextOut>
+        <OutArgument x:TypeArguments="x:String">
+          <mca:CSharpReference x:TypeArguments="x:String">variable2</mca:CSharpReference>
+        </OutArgument>
+      </local:CodeActivity1.TextOut>
     </local:CodeActivity1>
     <local:CodeActivity2 sap2010:WorkflowViewState.IdRef="CodeActivity2_1">
       <local:CodeActivity2.myTextCache>
         <InArgument x:TypeArguments="x:String">
-          <mca:CSharpValue x:TypeArguments="x:String">variable1</mca:CSharpValue>
+          <mca:CSharpValue x:TypeArguments="x:String">variable2</mca:CSharpValue>
         </InArgument>
       </local:CodeActivity2.myTextCache>
     </local:CodeActivity2>
-    <sads:DebugSymbol.Symbol>d0lDOlxHSVRcQ29kZVNhbXBsZXNOZXdcV29ya2Zsb3dcV29ya2Zsb3dDb25zb2xlQXBwbGljYXRpb24xXFdvcmtmbG93MS54YW1sBycDQQ4CAQErBTEdAgEIMgU4GwIBBTkFPxsCAQIuCy5aAgEJNQs1UgIBBjwLPFICAQM=</sads:DebugSymbol.Symbol>
+    <sads:DebugSymbol.Symbol>d0lDOlxHSVRcQ29kZVNhbXBsZXNOZXdcV29ya2Zsb3dcV29ya2Zsb3dDb25zb2xlQXBwbGljYXRpb24xXFdvcmtmbG93MS54YW1sCDUDVQ4CAQE6BUAdAgENQQVMGwIBBk0FUxsCAQI9Cz1aAgEORAtEUgIBCkkLSVoCAQdQC1BSAgED</sads:DebugSymbol.Symbol>
   </Sequence>
   <sap2010:WorkflowViewState.ViewStateManager>
     <sap2010:ViewStateManager>
       <sap2010:ViewStateData Id="AnotherActivity_1" sap:VirtualizedContainerService.HintSize="200,22" />
-      <sap2010:ViewStateData Id="CodeActivity1_1" sap:VirtualizedContainerService.HintSize="200,22" />
+      <sap2010:ViewStateData Id="CodeActivity1_2" sap:VirtualizedContainerService.HintSize="200,22" />
       <sap2010:ViewStateData Id="CodeActivity2_1" sap:VirtualizedContainerService.HintSize="200,22" />
       <sap2010:ViewStateData Id="Sequence_1" sap:VirtualizedContainerService.HintSize="222,270">
         <sap:WorkflowViewStateService.ViewState>
