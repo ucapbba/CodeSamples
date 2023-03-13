@@ -30,8 +30,8 @@ namespace AsyncDialog
 
         private async void simpleButton1_Click(object sender, EventArgs e)
         {
-           // await Task.Run(() => InvokeMethod()); //asynchronious 
-            aSyncContextPost();
+            await Task.Run(() => InvokeMethod()); //asynchronious 
+           // aSyncContextPost();
         }
 
         private void aSyncContextPost()

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CSExamples
 {
-    delegate void CallbackMethod(int result,int result2);
+    delegate void CallbackMethod(int result);
     class Calculator
     {
         public event CallbackMethod CalculationComplete;
@@ -16,7 +16,17 @@ namespace CSExamples
             int result = x + y;
 
             // Raise the callback event
-            CalculationComplete?.Invoke(result,result);
+            CalculationComplete?.Invoke(result);
+
+            return result;
+        }
+
+        public int Multiply(int x, int y)
+        {
+            int result = x * y;
+
+            // Raise the callback event
+            CalculationComplete?.Invoke(result);
 
             return result;
         }
@@ -25,10 +35,9 @@ namespace CSExamples
     // Define a class that handles the callback event
     class CallbackHandler
     {
-        public void HandleCallback(int result,int result2)
+        public void HandleCallback(int result)
         {
             Console.WriteLine("Calculation complete! Result: " + result);
-            Console.WriteLine("Calculation complete! Result: " + result2);
         }
     }
 }

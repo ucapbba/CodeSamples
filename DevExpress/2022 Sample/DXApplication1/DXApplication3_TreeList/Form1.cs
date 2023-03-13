@@ -16,7 +16,15 @@ namespace DXApplication3_TreeList
         {
             InitializeComponent();
             treeList1.DataSource = DataHelper.CreateTLData(10);
-            DataTable table = (DataTable)treeList1.DataSource;
+            //DataTable table = (DataTable)treeList1.DataSource;
+        }
+
+        private void simpleButton1_Click(object sender, EventArgs e)
+        {
+            this.SuspendLayout();
+            treeList1.DataSource = DataHelper.CreateTLData(4);
+            //DataTable table = (DataTable)treeList1.DataSource;
+
         }
     }
 

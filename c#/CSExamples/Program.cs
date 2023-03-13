@@ -8,10 +8,11 @@ namespace CSExamples
     {
         static void Main(string[] args)
         {
-            //Console.WriteLine("Hello World!");
-            //DelegateExample delegateExample = new DelegateExample();
-            //int result1 = delegateExample.PerformOperation(10, 20, new Operation(delegateExample.Add)); // result1 = 30
-            //int result2 = delegateExample.PerformOperation(10, 20, new Operation(delegateExample.Multiply)); // result2 = 200
+          
+            //Delegate Example
+            DelegateExample delegateExample = new DelegateExample();
+            int result1 = delegateExample.PerformOperation(10, 20, new Operation(delegateExample.Add)); // result1 = 30
+            int result2 = delegateExample.PerformOperation(10, 20, new Operation(delegateExample.Multiply)); // result2 = 200
 
             ////Callback example
             //I just met you,
@@ -25,6 +26,11 @@ namespace CSExamples
             calculator.CalculationComplete += handler.HandleCallback;
             int sum = calculator.Add(2, 3); // Output: "Calculation complete! Result: 5"
 
+            //Lambda Example
+            //LambdaExample lambda = new LambdaExample();
+            //int result = lambda.add(3, 4); // result is 7
+            //bool odd = lambda.checkOdd(2);
+            //lambda.doWhere();
         }
     }
 }

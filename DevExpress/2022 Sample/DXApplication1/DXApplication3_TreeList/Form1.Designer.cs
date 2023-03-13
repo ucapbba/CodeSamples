@@ -30,6 +30,7 @@ namespace DXApplication3_TreeList
         private void InitializeComponent()
         {
             this.treeList1 = new DevExpress.XtraTreeList.TreeList();
+            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.treeList1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -40,11 +41,21 @@ namespace DXApplication3_TreeList
             this.treeList1.Size = new System.Drawing.Size(400, 200);
             this.treeList1.TabIndex = 0;
             // 
+            // simpleButton1
+            // 
+            this.simpleButton1.Location = new System.Drawing.Point(527, 66);
+            this.simpleButton1.Name = "simpleButton1";
+            this.simpleButton1.Size = new System.Drawing.Size(75, 23);
+            this.simpleButton1.TabIndex = 1;
+            this.simpleButton1.Text = "simpleButton1";
+            this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(632, 278);
+            this.Controls.Add(this.simpleButton1);
             this.Controls.Add(this.treeList1);
             this.Name = "Form1";
             this.Text = "Form1";
@@ -56,6 +67,7 @@ namespace DXApplication3_TreeList
         #endregion
 
         private DevExpress.XtraTreeList.TreeList treeList1;
+        private DevExpress.XtraEditors.SimpleButton simpleButton1;
     }
 }
 

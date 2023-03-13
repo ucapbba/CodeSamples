@@ -1,6 +1,6 @@
 ﻿#include "AddFunctions.h"
 #include "BigLoopFunction.h"
-//#include "Thrust.h"
+#include "Thrust.h"
 
 
 int main()
