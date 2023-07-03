@@ -1,4 +1,7 @@
-﻿using System;
+﻿using DevExpress.XtraTreeList;
+using DevExpress.XtraTreeList.Nodes;
+using DevExpress.XtraTreeList.Printing;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -26,6 +29,30 @@ namespace DXApplication3_TreeList
             //DataTable table = (DataTable)treeList1.DataSource;
 
         }
+
+        private void treeList1_ClipboardNodeCopying(object sender, ClipboardNodeCopyingEventArgs e)
+        {
+            //not called on Cntrl+C.....
+            ClipboardValueInfoCollection values = e.Values;
+        }
+
+        private void treeList1_KeyDown(object sender, KeyEventArgs e)
+        {
+            Console.Write("called");
+            if (e.Control && e.KeyCode == Keys.C)
+            {
+                // Customizing the copied text
+                TreeListNode selectedNode = treeList1.FocusedNode;
+                string customText = $"Custom text: {selectedNode["ColumnName"]}";
+
+                // Copy the custom text to the clipboard
+                Clipboard.SetText(customText);
+
+                // Mark the event as handled to prevent further processing
+                e.Handled = true;
+            }
+        }
+
     }
 
     public class DataHelper

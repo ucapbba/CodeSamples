@@ -1,4 +1,6 @@
 ﻿
+using DevExpress.Utils;
+
 namespace DXApplication3_TreeList
 {
     partial class Form1
@@ -40,6 +42,9 @@ namespace DXApplication3_TreeList
             this.treeList1.Name = "treeList1";
             this.treeList1.Size = new System.Drawing.Size(400, 200);
             this.treeList1.TabIndex = 0;
+            this.treeList1.OptionsClipboard.AllowCopy = DefaultBoolean.True; //doesn't seem to work
+            this.treeList1.ClipboardNodeCopying += treeList1_ClipboardNodeCopying; //doesn't seem to work
+            this.treeList1.KeyDown += treeList1_KeyDown;
             // 
             // simpleButton1
             // 
