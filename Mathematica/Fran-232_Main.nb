@@ -1,0 +1,189 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 13.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      6594,        181]
+NotebookOptionsPosition[      5376,        153]
+NotebookOutlinePosition[      5801,        169]
+CellTagsIndexPosition[      5758,        166]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[""], "Input",
+ CellChangeTimes->{{3.8976194823908453`*^9, 
+  3.897619484153539*^9}},ExpressionUUID->"75bfe879-3190-4351-8737-\
+288efd2cb309"],
+
+Cell[CellGroupData[{
+
+Cell["Main File", "Title",
+ CellChangeTimes->{{3.897619502481434*^9, 
+  3.897619504162566*^9}},ExpressionUUID->"89e1b810-bdb9-4fe6-a583-\
+9eea74171fca"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{"Some", " ", "Mathemtica", " ", "functions"}], "*)"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"Add", "[", 
+     RowBox[{"x_", ",", "y_"}], "]"}], ":=", 
+    RowBox[{"x", "+", "y"}]}], "\n", 
+   RowBox[{
+    RowBox[{"DisplayAdd", "[", 
+     RowBox[{"Ip1_", ",", "Ip2_"}], "]"}], ":=", 
+    RowBox[{"Module", "[", 
+     RowBox[{
+      RowBox[{"{", "}"}], ",", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"Print", "[", 
+        RowBox[{"StringJoin", "[", 
+         RowBox[{
+          RowBox[{"StringJoin", "[", 
+           RowBox[{
+            RowBox[{"StringJoin", "[", 
+             RowBox[{"\"\<Adding \>\"", ",", "  ", 
+              RowBox[{"ToString", "[", "Ip1", "]"}]}], "]"}], ",", 
+            "\"\< and \>\""}], "]"}], ",", 
+          RowBox[{"ToString", "[", "Ip2", "]"}]}], "]"}], "]"}], ";", 
+       "\[IndentingNewLine]", 
+       RowBox[{"Print", "[", 
+        RowBox[{"StringJoin", "[", 
+         RowBox[{"\"\<gives \>\"", ",", 
+          RowBox[{"ToString", "[", 
+           RowBox[{"Add", "[", 
+            RowBox[{"1", ",", "2"}], "]"}], "]"}]}], "]"}], "]"}], ";"}]}], 
+     "\[IndentingNewLine]", "]"}]}]}]}]], "Input",
+ CellChangeTimes->{{3.897639176425228*^9, 3.8976391764262247`*^9}, {
+   3.8976392518445807`*^9, 3.8976392534941716`*^9}, 3.8976392943996735`*^9, {
+   3.8976393586126146`*^9, 3.89763942078026*^9}, {3.8976394748729887`*^9, 
+   3.897639515149938*^9}, {3.8976395483194013`*^9, 3.897639610724697*^9}, {
+   3.897639711708381*^9, 3.8976398897258945`*^9}, {3.8976400255210314`*^9, 
+   3.8976400466163654`*^9}},
+ CellLabel->"In[65]:=",ExpressionUUID->"61f72a35-24be-4321-9fc8-915e5d3c47b6"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{"Some", " ", "more", " ", "mathematica", " ", "functions"}], 
+   "*)"}], "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"SomeOtherFunction", "[", "]"}], ":=", 
+   RowBox[{"Module", "[", 
+    RowBox[{
+     RowBox[{"{", "}"}], ",", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{
+      "Print", "[", 
+       "\"\<This Mathematica notebook is hard to view in a plain text \
+file\>\"", "]"}], ";", "\[IndentingNewLine]", 
+      RowBox[{
+      "Print", "[", 
+       "\"\<Therefore it is hard to use efficient source control\>\"", "]"}], 
+      ";"}]}], "]"}]}]}]], "Input",
+ CellChangeTimes->{{3.8976391845243654`*^9, 3.897639184525363*^9}, 
+   3.897639300952058*^9, {3.897639332780402*^9, 3.8976393470049896`*^9}, {
+   3.8976399527211423`*^9, 3.897640014412047*^9}, {3.8976400509932275`*^9, 
+   3.89764005956443*^9}},
+ CellLabel->"In[67]:=",ExpressionUUID->"aa858dc2-9e90-455c-99c9-17a5dff22379"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"DisplayAdd", "[", 
+   RowBox[{"1", ",", "2"}], "]"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"SomeOtherFunction", "[", "]"}], ";"}]}], "Input",
+ CellChangeTimes->{{3.8976195076931586`*^9, 3.8976195118095336`*^9}, {
+  3.8976392237249136`*^9, 3.8976392404682627`*^9}, {3.8976393043226624`*^9, 
+  3.8976393253089933`*^9}, {3.8976395234565434`*^9, 3.8976395270654955`*^9}, {
+  3.897640003197052*^9, 3.8976400061080937`*^9}},
+ CellLabel->"In[68]:=",ExpressionUUID->"87fcaf29-fdc3-4949-b4c9-77b4d3920299"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData["\<\"Adding 1 and 2\"\>"], "Print",
+ CellChangeTimes->{
+  3.897639912284725*^9, {3.8976400067662497`*^9, 3.8976400171990223`*^9}, 
+   3.8976400657059336`*^9},
+ CellLabel->
+  "During evaluation of \
+In[68]:=",ExpressionUUID->"fbe47ccd-ebc6-4fbd-8393-0e0dda5e74e5"],
+
+Cell[BoxData["\<\"gives 3\"\>"], "Print",
+ CellChangeTimes->{
+  3.897639912284725*^9, {3.8976400067662497`*^9, 3.8976400171990223`*^9}, 
+   3.897640065708926*^9},
+ CellLabel->
+  "During evaluation of \
+In[68]:=",ExpressionUUID->"2c7ae1b6-80cf-4e9e-8cec-55f78ddb4db5"],
+
+Cell[BoxData["\<\"This Mathematica notebook is hard to view in a plain text \
+file\"\>"], "Print",
+ CellChangeTimes->{
+  3.897639912284725*^9, {3.8976400067662497`*^9, 3.8976400171990223`*^9}, 
+   3.897640065711928*^9},
+ CellLabel->
+  "During evaluation of \
+In[68]:=",ExpressionUUID->"facec527-783e-4db8-8b4a-c08581c10e0f"],
+
+Cell[BoxData["\<\"Therefore it is hard to use efficient source control\"\>"], \
+"Print",
+ CellChangeTimes->{
+  3.897639912284725*^9, {3.8976400067662497`*^9, 3.8976400171990223`*^9}, 
+   3.8976400657149086`*^9},
+ CellLabel->
+  "During evaluation of \
+In[68]:=",ExpressionUUID->"842a8b4e-c0eb-4f91-b6f7-0603c7c9b246"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{1152., 687.6},
+WindowMargins->{{Automatic, -1157.3999999999996`}, {Automatic, -7.5}},
+FrontEndVersion->"13.0 for Microsoft Windows (64-bit) (December 2, 2021)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"63d6b238-cbb2-4854-815f-8a034a3e36e2"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 154, 3, 28, "Input",ExpressionUUID->"75bfe879-3190-4351-8737-288efd2cb309"],
+Cell[CellGroupData[{
+Cell[737, 27, 152, 3, 98, "Title",ExpressionUUID->"89e1b810-bdb9-4fe6-a583-9eea74171fca"],
+Cell[892, 32, 1704, 41, 124, "Input",ExpressionUUID->"61f72a35-24be-4321-9fc8-915e5d3c47b6"],
+Cell[2599, 75, 948, 23, 86, "Input",ExpressionUUID->"aa858dc2-9e90-455c-99c9-17a5dff22379"],
+Cell[CellGroupData[{
+Cell[3572, 102, 547, 10, 48, "Input",ExpressionUUID->"87fcaf29-fdc3-4949-b4c9-77b4d3920299"],
+Cell[CellGroupData[{
+Cell[4144, 116, 276, 6, 22, "Print",ExpressionUUID->"fbe47ccd-ebc6-4fbd-8393-0e0dda5e74e5"],
+Cell[4423, 124, 267, 6, 22, "Print",ExpressionUUID->"2c7ae1b6-80cf-4e9e-8cec-55f78ddb4db5"],
+Cell[4693, 132, 324, 7, 22, "Print",ExpressionUUID->"facec527-783e-4db8-8b4a-c08581c10e0f"],
+Cell[5020, 141, 316, 7, 22, "Print",ExpressionUUID->"842a8b4e-c0eb-4f91-b6f7-0603c7c9b246"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+

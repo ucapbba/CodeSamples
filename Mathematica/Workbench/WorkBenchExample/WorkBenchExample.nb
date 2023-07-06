@@ -1,0 +1,104 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 13.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      3220,         96]
+NotebookOptionsPosition[      2239,         72]
+NotebookOutlinePosition[      2653,         88]
+CellTagsIndexPosition[      2610,         85]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[""], "Input",
+ CellChangeTimes->{{3.897638071059687*^9, 
+  3.897638074690033*^9}},ExpressionUUID->"7a6d2273-56c9-4797-a835-\
+da308385b650"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"DisplayAdd", "[", 
+   RowBox[{"1", ",", "2"}], "]"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"SomeOtherFunction", "[", "]"}], ";"}]}], "Input",
+ CellChangeTimes->{{3.897638098452934*^9, 3.897638102814543*^9}, {
+   3.897639260581854*^9, 3.89763926093267*^9}, 3.8976400777258897`*^9},
+ CellLabel->"In[12]:=",ExpressionUUID->"e0950dde-082b-4560-8ffa-b3924bbda781"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData["\<\"Adding 1 and 2\"\>"], "Print",
+ CellChangeTimes->{3.8976401751550317`*^9},
+ CellLabel->
+  "During evaluation of \
+In[12]:=",ExpressionUUID->"5df169fa-9ed7-481f-a656-e9ab05bcdcf5"],
+
+Cell[BoxData["\<\"gives 3\"\>"], "Print",
+ CellChangeTimes->{3.8976401751602488`*^9},
+ CellLabel->
+  "During evaluation of \
+In[12]:=",ExpressionUUID->"017be3cb-7df1-4ed8-9414-a803e4208a6a"],
+
+Cell[BoxData["\<\"This Mathematica notebook has put functions into dedicated \
+.m files\"\>"], "Print",
+ CellChangeTimes->{3.897640175167185*^9},
+ CellLabel->
+  "During evaluation of \
+In[12]:=",ExpressionUUID->"919a20c7-15f7-4367-bb3f-bd493a02528d"],
+
+Cell[BoxData["\<\"Therefore it much easier to use efficient source \
+control\"\>"], "Print",
+ CellChangeTimes->{3.897640175171174*^9},
+ CellLabel->
+  "During evaluation of \
+In[12]:=",ExpressionUUID->"c10a1dd8-d0cd-405f-8f2b-0b6b95d97a68"]
+}, Open  ]]
+}, Open  ]],
+
+Cell[BoxData[""], "Input",
+ CellChangeTimes->{{3.8976380797568645`*^9, 
+  3.897638083485244*^9}},ExpressionUUID->"a10243c0-14c6-4f3c-86f2-\
+898ec5675eb7"]
+},
+WindowSize->{581.25, 585.75},
+WindowMargins->{{413.25, Automatic}, {14.25, Automatic}},
+FrontEndVersion->"13.0 for Microsoft Windows (64-bit) (December 2, 2021)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"48005251-6baa-4c0e-8b1e-294556048535"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 152, 3, 28, "Input",ExpressionUUID->"7a6d2273-56c9-4797-a835-da308385b650"],
+Cell[CellGroupData[{
+Cell[735, 27, 409, 8, 48, "Input",ExpressionUUID->"e0950dde-082b-4560-8ffa-b3924bbda781"],
+Cell[CellGroupData[{
+Cell[1169, 39, 197, 4, 22, "Print",ExpressionUUID->"5df169fa-9ed7-481f-a656-e9ab05bcdcf5"],
+Cell[1369, 45, 190, 4, 22, "Print",ExpressionUUID->"017be3cb-7df1-4ed8-9414-a803e4208a6a"],
+Cell[1562, 51, 250, 5, 22, "Print",ExpressionUUID->"919a20c7-15f7-4367-bb3f-bd493a02528d"],
+Cell[1815, 58, 239, 5, 22, "Print",ExpressionUUID->"c10a1dd8-d0cd-405f-8f2b-0b6b95d97a68"]
+}, Open  ]]
+}, Open  ]],
+Cell[2081, 67, 154, 3, 28, "Input",ExpressionUUID->"a10243c0-14c6-4f3c-86f2-898ec5675eb7"]
+}
+]
+*)
+
