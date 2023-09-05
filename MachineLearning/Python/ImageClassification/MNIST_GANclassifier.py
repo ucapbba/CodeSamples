@@ -2,6 +2,7 @@
 from keras.datasets import mnist
 from matplotlib import pyplot
 import FunctionsDiscriminator as discFun
+import FunctionsGenerator as genFun
 from keras.utils.vis_utils import plot_model
 
 # load the images into memory
@@ -21,22 +22,30 @@ for i in range(25):
 #uncomment to plot
 #pyplot.show()
 
+'''
 # define the discriminator model
-model = discFun.define_discriminator()
+model_disc = discFun.define_discriminator()
 # load image data
 dataset = discFun.load_real_samples()
 # fit the model
-discFun.train_discriminator(model, dataset)
-
+discFun.train_discriminator(model_disc, dataset)
+'''
 # size of the latent space
-'''latent_dim = 100
-# create the discriminator
-d_model = fun.define_discriminator()
-# create the generator
-g_model = fun.define_generator(latent_dim)
-# create the gan
-gan_model = fun.define_gan(g_model, d_model)
-# load image data
-dataset = fun.load_real_samples()
-# train model
-fun.train(g_model, d_model, gan_model, dataset, latent_dim)'''
+latent_dim = 100
+# define the generator model
+model = genFun.define_generator(latent_dim)
+# summarize the model
+model.summary()
+# generate samples
+n_samples = 25
+X, _ = genFun.generate_fake_samples(model, latent_dim, n_samples)
+# plot the generated samples
+for i in range(n_samples):
+ # define subplot
+ pyplot.subplot(5, 5, 1 + i)
+ # turn off axis labels
+ pyplot.axis('off')
+ # plot single image
+ pyplot.imshow(X[i, :, :, 0], cmap='gray_r')
+# show the figure
+pyplot.show()

@@ -73,15 +73,6 @@ def generate_fake_samples(n_samples):
  y = np.zeros((n_samples, 1))
  return X, y
 
-from numpy.random import randn
-# generate points in latent space as input for the generator
-def generate_latent_points(latent_dim, n_samples):
- # generate points in the latent space
- x_input = randn(latent_dim * n_samples)
- # reshape into a batch of inputs for the network
- x_input = x_input.reshape(n_samples, latent_dim)
- return x_input
-
 
 # train the discriminator model
 def train_discriminator(model, dataset, n_iter=100, n_batch=256):
