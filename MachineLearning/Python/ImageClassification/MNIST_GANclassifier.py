@@ -3,6 +3,7 @@ from keras.datasets import mnist
 from matplotlib import pyplot
 import FunctionsDiscriminator as discFun
 import FunctionsGenerator as genFun
+import FunctionsGAN as ganFun
 from keras.utils.vis_utils import plot_model
 
 # load the images into memory
@@ -32,20 +33,16 @@ discFun.train_discriminator(model_disc, dataset)
 '''
 # size of the latent space
 latent_dim = 100
+# create the discriminator
+d_model = discFun.define_discriminator()
 # define the generator model
-model = genFun.define_generator(latent_dim)
+g_model = genFun.define_generator(latent_dim)
+# create the gan
+gan_model = ganFun.define_gan(g_model, d_model)
 # summarize the model
-model.summary()
-# generate samples
-n_samples = 25
-X, _ = genFun.generate_fake_samples(model, latent_dim, n_samples)
-# plot the generated samples
-for i in range(n_samples):
- # define subplot
- pyplot.subplot(5, 5, 1 + i)
- # turn off axis labels
- pyplot.axis('off')
- # plot single image
- pyplot.imshow(X[i, :, :, 0], cmap='gray_r')
-# show the figure
-pyplot.show()
+gan_model.summary()
+# load image data
+dataset = discFun.load_real_samples()
+# train model
+ganFun.train(g_model, d_model, gan_model, dataset, latent_dim)
+
