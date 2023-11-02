@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34202.233
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MauiApp1", "MauiApp1.csproj", "{97DBBFA9-4ED4-4D1D-B033-3BCEA82AF542}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MauiApp1", "MauiApp1.csproj", "{97DBBFA9-4ED4-4D1D-B033-3BCEA82AF542}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "C#REST", "..\..\..\..\ClientServer\C#REST\C#REST.csproj", "{DAE01430-71A2-429D-98E6-85716B03E927}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,6 +19,10 @@ Global
 		{97DBBFA9-4ED4-4D1D-B033-3BCEA82AF542}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{97DBBFA9-4ED4-4D1D-B033-3BCEA82AF542}.Release|Any CPU.Build.0 = Release|Any CPU
 		{97DBBFA9-4ED4-4D1D-B033-3BCEA82AF542}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{DAE01430-71A2-429D-98E6-85716B03E927}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DAE01430-71A2-429D-98E6-85716B03E927}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DAE01430-71A2-429D-98E6-85716B03E927}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DAE01430-71A2-429D-98E6-85716B03E927}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
