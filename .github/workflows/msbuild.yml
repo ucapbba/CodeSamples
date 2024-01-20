@@ -45,10 +45,3 @@ jobs:
         
     - name: Determine Version
       uses: gittools/actions/gitversion/execute@v0.9.7
-      
-  deployment:
-    runs-on: ubuntu-latest
-    environment: FRAN-224_Deployment
-    steps:
-      - name: deploy
-        # ...deployment-specific steps
