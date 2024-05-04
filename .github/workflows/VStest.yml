@@ -40,7 +40,10 @@ jobs:
      
     - name: Add vstest to path 
       uses: microsoft/vstest-action@v1.0.0
-
+      with:
+          testAssembly: UnitTest1.dll
+          searchFolder: UnitTest/x64/Debug/
+          
     - name: Run Tests
       run: vstest.console.exe UnitTest/x64/Debug/UnitTest1.dll
 
