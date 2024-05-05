@@ -5,3 +5,4 @@ sphinxcontrib-katex
 numpydoc
 matplotlib
 sphinx_rtd_theme
+breathe
