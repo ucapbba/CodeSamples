@@ -23,7 +23,7 @@ private:
     * @return returns the variable 1
     *
     */
-    double myWellDocumentedFucntion(double a) { return a; }
+    double myWellDocumentedFunction(double a) { return a; }
 
 public:
     /**

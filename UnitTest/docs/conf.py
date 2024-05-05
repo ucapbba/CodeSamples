@@ -26,11 +26,8 @@ author = "Read the Docs core team"
 # -- General configuration
 
 extensions = [
-    "sphinx.ext.duration",
-    "sphinx.ext.doctest",
-    "sphinx.ext.autodoc",
-    "sphinx.ext.autosummary",
-    "sphinx.ext.intersphinx",
+    'sphinx.ext.autodoc',
+    'sphinx.ext.doctest',
     'sphinx.ext.mathjax',
     'sphinx.ext.viewcode',
     'sphinx.ext.imgmath', 
@@ -70,7 +67,6 @@ html_static_path = ["_static"]
 import subprocess
 subprocess.call('make clean', shell=True)
 subprocess.call('doxygen', shell=True)
-html_extra_path = ['html']
 
-breathe_projects = { "class_class_to_test": "/xml/" }
+breathe_projects = { "class_class_to_test": "xml/" }
 breathe_default_project = "class_class_to_test"
