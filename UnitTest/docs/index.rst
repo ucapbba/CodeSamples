@@ -1,16 +1,14 @@
 ==================
-Code Samples Docs
+Codesamples Docs
 ==================
  
-C++ Classes
------------
+ Sample documentation for repo https://github.com/ucapbba/CodeSamples
+ 
+.. toctree::
+   :maxdepth: 2
+   :caption: Contents:
 
-.. doxygenclass:: ClassToTest
-    :members:
+   manual/manual_index
+   reference/reference_index
+ 
 
-C++ Functions
--------------
-
-.. doxygenfunction:: ClassToTest::myfuncbroken
-
-.. doxygenfunction:: ClassToTest::myfuncworking
