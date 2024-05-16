@@ -1,0 +1,8 @@
+sphinx<6
+sphinx-gallery
+furo
+sphinxcontrib-katex
+numpydoc
+matplotlib
+sphinx_rtd_theme
+breathe
