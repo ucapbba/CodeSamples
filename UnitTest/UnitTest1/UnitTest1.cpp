@@ -3,7 +3,7 @@
 #include <iostream>
 #include <fstream>
 #include <filesystem>
-#include <nlohmann/json.hpp>
+#include "../../submodules//json/include/nlohmann/json.hpp"
 #include <tuple>
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
