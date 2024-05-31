@@ -16,7 +16,7 @@ namespace UnitTest1
 		std::string GetFilePath()
 		{	
 			std::filesystem::path path = std::filesystem::current_path();
-			std::string filepath = path.u8string() + "\\Input.json";
+			std::string filepath = path.u8string() + "\\..\\..\\Input.json";
 			return filepath;
 
 		}
