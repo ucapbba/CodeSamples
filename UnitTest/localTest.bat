@@ -20,3 +20,5 @@ if %exit_code% neq 0 (
 
 REM If tests passed, continue with the build
 echo Unit tests passed. Proceeding with the build.
+
+pause
