@@ -46,7 +46,7 @@ jobs:
         INPUT_FILE: InputFiles/Input.json
       run: vstest.console.exe UnitTest/x64/Debug/UnitTest1.dll /TestCaseFilter:"FullyQualifiedName~UnitTestFile1"
       
-      - name: Run Unit Tests 2
+    - name: Run Unit Tests 2
       env:
         INPUT_FILE: InputFiles/Input2.json
       run: vstest.console.exe UnitTest/x64/Debug/UnitTest1.dll /TestCaseFilter:"FullyQualifiedName~UnitTestFile2"
