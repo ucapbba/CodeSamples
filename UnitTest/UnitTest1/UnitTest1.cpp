@@ -13,6 +13,27 @@ namespace UnitTest1
 	{
 	public:
 
+		char* GetEnvVariable(std::string name)
+		{
+			char* envariable;
+			size_t bufferSize = 0;
+			errno_t err = _dupenv_s(&envariable, &bufferSize, name.c_str());
+			return envariable;
+		}
+
+		TEST_METHOD(CanReadEnvVariable)
+		{
+			char* file = GetEnvVariable("INPUT_FILE");
+			if (!file)
+			{
+				std::cout << "filename not found, will use default" << std::endl;
+				Assert::AreEqual(1, 0);
+			}
+
+			std::cout << "filename = " << file << std::endl;
+			Assert::AreEqual(1, 1);
+		}
+
 		std::string GetFilePath()
 		{	
 			std::filesystem::path path = std::filesystem::current_path();

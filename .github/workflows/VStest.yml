@@ -40,7 +40,9 @@ jobs:
      
     - name: Setup VSTest Path
       uses: darenm/Setup-VSTest@v1.3
-      
+      env:
+        INPUT_FILE: MyVariable
+        
     - name: Run Unit Tests
       run: vstest.console.exe UnitTest/x64/Debug/UnitTest1.dll
 
