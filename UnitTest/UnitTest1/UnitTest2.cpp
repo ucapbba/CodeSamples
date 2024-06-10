@@ -42,7 +42,7 @@ namespace UnitTest1
 			std::string param3 = "some_value";
 			std::string nested_param1 = "abcd";
 			int nested_param2 = 100;
-
+			std::cout << " param1 = 20 " << std::endl;
 			auto [p1, p2, p3, p4, np1, np2] = help.GetValuesFromJSON();
 
 			Assert::AreEqual(param1, p1);
