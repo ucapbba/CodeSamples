@@ -36,8 +36,12 @@ namespace UnitTest1
 
 		std::string GetFilePath()
 		{	
+			char* file = GetEnvVariable("INPUT_FILE");
+			if (!file)
+				file = "WrongFile.json";
+
 			std::filesystem::path path = std::filesystem::current_path();
-			std::string filepath = path.u8string() + "\\..\\..\\Input.json";
+			std::string filepath = path.u8string() + "\\..\\..\\"+std::string(file);
 			return filepath;
 
 		}
