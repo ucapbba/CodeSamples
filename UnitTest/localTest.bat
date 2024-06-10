@@ -7,7 +7,13 @@ REM Set the MSBuild path
 set "VSTEST_PATH=C:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\Common7\IDE\Extensions\TestPlatform"
 
 REM Debug Testing Dll
-"%VSTEST_PATH%\vstest.console.exe" "%batch_dir%/x64/Debug/UnitTest1.dll"
+set "INPUT_FILE=InputFiles\\Input.json"
+"%VSTEST_PATH%\vstest.console.exe" "%batch_dir%/x64/Debug/UnitTest1.dll" /TestCaseFilter:"FullyQualifiedName~UnitTestFile1" > Out1.txt
+
+REM Debug Testing Dll
+set "INPUT_FILE=InputFiles\\Input2.json"
+"%VSTEST_PATH%\vstest.console.exe" "%batch_dir%/x64/Debug/UnitTest1.dll" /TestCaseFilter:"FullyQualifiedName~UnitTestFile2" > Out2.txt
+
 
 REM Capture the exit code
 set "exit_code=%errorlevel%"

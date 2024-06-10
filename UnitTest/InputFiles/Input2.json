@@ -1,0 +1,10 @@
+{
+    "parameter1": 20,
+    "parameter2": 30,
+    "parameter3": "some_value",
+    "parameter4": [1, 2, 3],
+    "parameter5": {
+        "nested_param1": "abcd",
+        "nested_param2": 100
+    }
+}
