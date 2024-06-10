@@ -23,7 +23,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
       with:
-        fetch-depth: 0
+          submodules: 'recursive' # Ensure submodules are fetched
 
     - name: Add MSBuild to PATH
       uses: microsoft/setup-msbuild@v1.0.2
@@ -38,17 +38,16 @@ jobs:
       # See https://docs.microsoft.com/visualstudio/msbuild/msbuild-command-line-reference
       run: msbuild /m /p:Configuration=${{env.BUILD_CONFIGURATION}} ${{env.SOLUTION_FILE_PATH}}
      
-    - name: Run Unit Tests
-      uses: microsoft/vstest-action@v1.0.0
-      with:
-          testAssembly: UnitTest1.dll
-          searchFolder: UnitTest/x64/Debug/
-          
+    - name: Setup VSTest Path
+      uses: darenm/Setup-VSTest@v1.3
+        
+    - name: Run Unit Tests 1 
+      env:
+        INPUT_FILE: InputFiles/Input.json
+      run: vstest.console.exe UnitTest/x64/Debug/UnitTest1.dll /TestCaseFilter:"FullyQualifiedName~UnitTestFile1"
+      
+    - name: Run Unit Tests 2
+      env:
+        INPUT_FILE: InputFiles/Input2.json
+      run: vstest.console.exe UnitTest/x64/Debug/UnitTest1.dll /TestCaseFilter:"FullyQualifiedName~UnitTestFile2"
 
-    - name: Install GitVersion
-      uses: gittools/actions/gitversion/setup@v0.9.7
-      with:
-        versionSpec: '5.x'
- 
-    - name: Determine Version
-      uses: gittools/actions/gitversion/execute@v0.9.7
