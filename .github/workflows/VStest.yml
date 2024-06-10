@@ -43,6 +43,6 @@ jobs:
         
     - name: Run Unit Tests
       env:
-        INPUT_FILE: Input.json
+        INPUT_FILE: InputFiles/Input.json
       run: vstest.console.exe UnitTest/x64/Debug/UnitTest1.dll
 

@@ -42,6 +42,7 @@ namespace UnitTest1
 
 			std::filesystem::path path = std::filesystem::current_path();
 			std::string filepath = path.u8string() + "\\..\\..\\"+std::string(file);
+			std::cout << "filepath = " << filepath.c_str() << std::endl;
 			return filepath;
 
 		}
