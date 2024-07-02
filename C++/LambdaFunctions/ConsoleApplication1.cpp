@@ -34,7 +34,7 @@ int main()
     int final_sum = add_to_sum(78);
     //"100 + 78 = " << final_sum;
 
-    return 0;
+    //return 0;
 
 
     //Lamda function in STL
@@ -45,7 +45,13 @@ int main()
     //& indicates capture by reference - could leave blank []
     auto result2 = std::find_if(numbers.begin(), numbers.end(), 
         [&](const auto& e) {
-            return (mclass.value % 2) == 0;
+            return (e.value % 2) == 0;
+        });
+
+    int maxVal = 4;
+    int result3 = std::count_if(numbers.begin(), numbers.end(),
+        [&maxVal](const auto& e) {
+            return (e.value > maxVal);
         });
 
 

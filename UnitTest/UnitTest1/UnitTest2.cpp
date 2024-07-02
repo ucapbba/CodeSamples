@@ -10,7 +10,7 @@ using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
 namespace UnitTest1
 {
-	TEST_CLASS(UnitTestFile1)
+	TEST_CLASS(UnitTestFile2)
 	{
 	public:
 
@@ -29,23 +29,6 @@ namespace UnitTest1
 			Assert::AreEqual(1, 1);
 		}
 
-	
-		TEST_METHOD(TestMethod1)
-		{
-			double correctValue = 1.2;
-			ClassToTest classTest;
-			//Assert::AreEqual(correctValue, classTest.myfuncbroken());
-			Assert::AreEqual(1,1);
-
-		}
-
-		TEST_METHOD(TestMethod2)
-		{		
-			double correctValue = 1.2;
-			ClassToTest classTest;
-			Assert::AreEqual(correctValue, classTest.myfuncworking());
-		}
-
 		TEST_METHOD(CanOpenFileTest)
 		{
 			bool canOpen = help.CanOpenFile();
@@ -54,12 +37,12 @@ namespace UnitTest1
 
 		TEST_METHOD(TestInputFile)
 		{
-			int param1 = 10;
-			int param2 = 20;
+			int param1 = 20;
+			int param2 = 30;
 			std::string param3 = "some_value";
-			std::string nested_param1 = "abc";
+			std::string nested_param1 = "abcd";
 			int nested_param2 = 100;
-
+			std::cout << " param1 = 20 " << std::endl;
 			auto [p1, p2, p3, p4, np1, np2] = help.GetValuesFromJSON();
 
 			Assert::AreEqual(param1, p1);

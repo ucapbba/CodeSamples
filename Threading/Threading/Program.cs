@@ -7,22 +7,15 @@ namespace Threasing
     {
         static void Main(string[] args)
         {
-            // Main execution starts here  
             Console.WriteLine("Main thread starts here.");
 
-            //Async approach 
-            //Program.DoSomeHeavyLifting();
-            
-            
-            //Sync approach -  Create a thread   
-            Thread backgroundThread = new Thread(new ThreadStart(Program.DoSomeHeavyLifting));
-            // Start thread  
+            // Create a background thread for heavy lifting
+            Thread backgroundThread = new Thread(DoSomeHeavyLifting);
             backgroundThread.Start();
 
             // This method doesn't take anytime at all.  
             Program.DoSomething();
 
-            // Execution ends here  
             Console.WriteLine("Main thread ends here.");
             Console.ReadKey();
         }
@@ -31,25 +24,24 @@ namespace Threasing
         {
             Console.WriteLine("I'm lifting a truck!!");
             Thread.Sleep(1000);
-            Console.WriteLine("Tired! Need a 3 sec nap.");
+   
+            Console.WriteLine(Environment.NewLine+"Lifting once ...."+ Environment.NewLine);
             Thread.Sleep(1000);
-            Console.WriteLine("1....");
+            Console.WriteLine(Environment.NewLine + "Lifting once 2 times...."+ Environment.NewLine);
             Thread.Sleep(1000);
-            Console.WriteLine("2....");
-            Thread.Sleep(1000);
-            Console.WriteLine("3....");
-            Console.WriteLine("I'm awake.");
+            Console.WriteLine(Environment.NewLine + "Done lifting"+Environment.NewLine);
         }
         public static void DoSomething()
         {
-            Console.WriteLine("Hey! DoSomething here!");
+
+            Console.WriteLine("***************** Hey! DoSomething Else here! *******************");
             for (int i = 0; i < 20; i++)
             {
-                Console.Write($"{i} ");
+                Console.Write($"{i} async loop");
                 Thread.Sleep(200);
             }
             Console.WriteLine();
-            Console.WriteLine("I'm done.");
+            Console.WriteLine("****************  DoSomething Else done. *******************");
         }
     }
 }
