@@ -6,7 +6,7 @@
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-project = 'Pyton in Sphinx Examples'
+project = 'Python in Sphinx Examples'
 copyright = '2024, asda'
 author = 'Bradley Augstein'
 release = '1.0'
