@@ -1,0 +1,24 @@
+name: AutoRelease
+
+on:
+  push:
+    branches: [ main, release ]
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  release:
+    # The type of runner that the job will run on
+    runs-on: windows-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Auto Release on Commit
+        uses: softprops/action-gh-release@v1
+        with:
+          title: Version ${{ env.semver }}
+          changelog: CHANGELOG.md
+          regex: 'v\d+\.\d+\.\d+'  # Customize the version pattern
