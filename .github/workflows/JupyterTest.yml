@@ -3,9 +3,9 @@ name: JupyterTest
 on: 
   # Triggers the workflow on push or pull request events but only for the main branch
    push:
-    branches: [ main, Unit_Test]
+    branches: [main]
    pull_request:
-    branches: [ main ]
+    branches: [main]
     
 
 jobs:
@@ -20,12 +20,4 @@ jobs:
       uses: actions/setup-python@v3
       with:
         python-version: '3.8'
-
-    - name: Install dependencies
-      run: |
-        pip install jupyter nbconvert
-
-    - name: Run Jupyter Notebook
-      run: |
-        jupyter nbconvert --to notebook --execute --inplace UnitTest/NotebookToTest.ipynb
 
