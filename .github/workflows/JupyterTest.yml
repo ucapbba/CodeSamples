@@ -14,10 +14,18 @@ jobs:
 
     steps:
     - name: Checkout repository
-    - uses: actions/checkout@v3
+      uses: actions/checkout@v3
 
     - name: Set up Python
       uses: actions/setup-python@v3
       with:
         python-version: '3.8'
+        
+    - name: Install dependencies
+      run: |
+        pip install jupyter nbconvert
+
+    - name: Run Jupyter Notebook
+      run: |
+        jupyter nbconvert --to notebook --execute --inplace your_notebook.ipynb
 
