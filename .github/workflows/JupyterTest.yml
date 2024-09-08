@@ -23,7 +23,7 @@ jobs:
         
     - name: Install dependencies
       run: |
-        pip install jupyter nbconvert pandoc
+        pip install jupyter nbconvert pandoc matplotlib
 
     - name: Run Jupyter Notebook
       run: |
