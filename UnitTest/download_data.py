@@ -9,10 +9,14 @@ class DownloadProgressBar(tqdm):
             self.total = tsize
         self.update(b * bsize - self.n)
 
+import os
+print(os.getcwd())
+
 # Check if the data file already exists
-data_path = "catalog.fits"
+data_path = "testfile.txt"
 if not os.path.exists(data_path):
-    url = "https://zenodo.org/records/13622599/files/catalog.fits?download=1&preview=1"
+    print("Could not find cached data - downloading ...............")
+    url = "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf"
     with DownloadProgressBar(unit='B', unit_scale=True, miniters=1, desc=data_path) as t:
         urllib.request.urlretrieve(url, data_path, reporthook=t.update_to)
 else:

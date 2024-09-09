@@ -32,13 +32,17 @@ jobs:
        
     - name: Install dependencies
       run: | 
-        pip install jupyter nbconvert pandoc matplotlib urllib tqdm
+        pip install jupyter nbconvert pandoc matplotlib urllib tqdm papermill
 
     - name: Download data if not cached
       if: steps.cache-data.outputs.cache-hit != 'true'
       run: |
         python UnitTest/download_data.py
-        
+    
+    - name: Run Jupyter Notebook Papermill
+      run: |
+        papermill UnitTest/NotebookToTest.ipynb UnitTest/NotebookToTest_output.ipynb | tee notebook_output.log
+    
     - name: Run Jupyter Notebook
       run: |
         jupyter nbconvert --to notebook --execute --inplace UnitTest/NotebookToTest.ipynb
