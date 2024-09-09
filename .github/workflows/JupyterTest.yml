@@ -45,7 +45,7 @@ jobs:
 
     - name: Run converted script
       run: |
-        python UnitTest/NotebookToTest.py | tee notebook_output.log
+        python UnitTest/NotebookToTest.py
     
     - name: Run Jupyter Notebook Papermill
       run: |
