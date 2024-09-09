@@ -38,6 +38,10 @@ jobs:
       if: steps.cache-data.outputs.cache-hit != 'true'
       run: |
         python UnitTest/download_data.py
+   
+    - name: Convert notebook to script
+      run: |
+        jupyter nbconvert --to script UnitTest/NotebookToTest.ipynb
     
     - name: Run Jupyter Notebook Papermill
       run: |
