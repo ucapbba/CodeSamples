@@ -21,10 +21,24 @@ jobs:
       with:
         python-version: '3.8'
         
+    - name: Cache data
+      id: cache-data
+      uses: actions/cache@v3
+      with:
+        path: .
+        key: ${{ runner.os }}-data-${{ hashFiles('catalog.fits') }}
+        restore-keys: |
+          ${{ runner.os }}-data-
+       
     - name: Install dependencies
       run: |
         pip install jupyter nbconvert pandoc matplotlib
 
+    - name: Download data if not cached
+      if: steps.cache-data.outputs.cache-hit != 'true'
+      run: |
+        python download_data.py
+        
     - name: Run Jupyter Notebook
       run: |
         jupyter nbconvert --to notebook --execute --inplace UnitTest/NotebookToTest.ipynb
