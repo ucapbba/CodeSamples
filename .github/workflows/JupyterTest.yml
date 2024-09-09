@@ -32,7 +32,7 @@ jobs:
        
     - name: Install dependencies
       run: | 
-        pip install jupyter nbconvert pandoc matplotlib tqdm papermill
+        pip install jupyter nbconvert 
 
     - name: Download data if not cached
       if: steps.cache-data.outputs.cache-hit != 'true'
@@ -46,12 +46,5 @@ jobs:
     - name: Run converted script
       run: |
         python UnitTest/NotebookToTest.py
-    
-    - name: Run Jupyter Notebook Papermill
-      run: |
-        papermill UnitTest/NotebookToTest.ipynb UnitTest/NotebookToTest_output.ipynb | tee notebook_output.log
-    
-    - name: Run Jupyter Notebook
-      run: |
-        jupyter nbconvert --to notebook --execute --inplace UnitTest/NotebookToTest.ipynb
+
 
