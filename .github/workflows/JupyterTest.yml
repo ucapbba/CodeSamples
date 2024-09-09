@@ -31,13 +31,13 @@ jobs:
           ${{ runner.os }}-data-
        
     - name: Install dependencies
-      run: |
-        pip install jupyter nbconvert pandoc matplotlib
+      run: | 
+        pip install jupyter nbconvert pandoc matplotlib urllib tqdm
 
     - name: Download data if not cached
       if: steps.cache-data.outputs.cache-hit != 'true'
       run: |
-        python download_data.py
+        python UnitTest/download_data.py
         
     - name: Run Jupyter Notebook
       run: |
