@@ -32,7 +32,7 @@ jobs:
        
     - name: Install dependencies
       run: | 
-        pip install jupyter nbconvert pandoc matplotlib urllib tqdm papermill
+        pip install jupyter nbconvert pandoc matplotlib tqdm papermill
 
     - name: Download data if not cached
       if: steps.cache-data.outputs.cache-hit != 'true'
