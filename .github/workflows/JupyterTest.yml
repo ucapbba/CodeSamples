@@ -32,7 +32,7 @@ jobs:
        
     - name: Install dependencies
       run: | 
-        pip install jupyter nbconvert tqdm pandoc mtplotlib
+        pip install jupyter nbconvert tqdm pandoc matplotlib
 
     - name: Download data if not cached
       if: steps.cache-data.outputs.cache-hit != 'true'
