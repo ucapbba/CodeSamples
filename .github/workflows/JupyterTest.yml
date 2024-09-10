@@ -29,7 +29,7 @@ jobs:
       id: cache-data
       uses: actions/cache@v3
       with:
-        path: .
+        path: ./data
         key: ${{ runner.os }}-data-${{ hashFiles('testfile.txt') }}
         restore-keys: |
           ${{ runner.os }}-data-1
