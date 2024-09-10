@@ -32,7 +32,7 @@ jobs:
         path: ./data
         key: ${{ runner.os }}-data-${{ hashFiles('testfile.txt') }}
         restore-keys: |
-          ${{ runner.os }}-data-1
+          ${{ runner.os }}-data-2
        
     - name: Install dependencies
       run: | 
