@@ -30,7 +30,7 @@ jobs:
       uses: actions/cache@v3
       with:
         path: ./data
-        key: ${{ runner.os }}-data-${{ hashFiles('testfile.txt') }}
+        key: ${{ runner.os }}-data-${{ hashFiles('testfile.txt') }}-${{ github.run_id }}
         restore-keys: |
           ${{ runner.os }}-data-2
        
