@@ -37,11 +37,6 @@ jobs:
     - name: Install dependencies
       run: | 
         pip install jupyter nbconvert tqdm
-
-    - name: Download data if not cached
-      if: steps.cache-data.outputs.cache-hit != 'true'
-      run: |
-        python UnitTest/download_data.py
    
     - name: Convert notebook to script
       run: |
