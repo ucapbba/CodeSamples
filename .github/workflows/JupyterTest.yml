@@ -20,7 +20,11 @@ jobs:
       uses: actions/setup-python@v3
       with:
         python-version: '3.8'
-        
+
+    - name: Create data directory if it doesn't exist
+      run: |
+        mkdir -p data    
+    
     - name: Cache data
       id: cache-data
       uses: actions/cache@v3
@@ -32,7 +36,7 @@ jobs:
        
     - name: Install dependencies
       run: | 
-        pip install jupyter nbconvert tqdm pandoc matplotlib
+        pip install jupyter nbconvert tqdm
 
     - name: Download data if not cached
       if: steps.cache-data.outputs.cache-hit != 'true'

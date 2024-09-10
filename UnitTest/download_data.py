@@ -13,7 +13,7 @@ import os
 print(os.getcwd())
 
 # Check if the data file already exists
-data_path = "testfile.txt"
+data_path = "data/testfile.txt"
 if not os.path.exists(data_path):
     print("Could not find cached data - downloading ...............")
     url = "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf"
