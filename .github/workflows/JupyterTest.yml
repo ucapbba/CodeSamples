@@ -23,7 +23,7 @@ jobs:
 
     - name: Create data directory if it doesn't exist
       run: |
-        mkdir -p data    
+        mkdir -p UnitTest/data    
     
     - name: Cache data
       id: cache-data
