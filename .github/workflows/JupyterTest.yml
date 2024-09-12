@@ -38,8 +38,12 @@ jobs:
       run: | 
         pip install jupyter tqdm pipx
    
-    - name: Convert notebook to script
+    - name: Run notebook directly
       run: |
-        pipx run --show-output jupyter execute UnitTest/NotebookToTest.ipynb
+        pipx run jupyter execute UnitTest/NotebookToTest.ipynb
+        
+    - name: Convert to script to see logs
+      run: |
+        pipx runpip jupyter nbconvert --to notebook --execute UnitTest/NotebookToTest.ipynb --stdout
 
 
