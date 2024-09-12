@@ -39,7 +39,7 @@ jobs:
        
     - name: Install dependencies
       run: | 
-        pip install jupyter tqdm pipx
+        pip install jupyter tqdm pipx numpy
    
     - name: Run notebook directly
       run: |
