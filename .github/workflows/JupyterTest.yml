@@ -37,12 +37,17 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-data-${{ github.run_number }}-
        
-    - run: pip install pipx
-    - run: pipx install jupyter
-    - run: pipx runpip jupyter install numpy matplotlib
+    - name: Set PIPX_HOME to a path without spaces
+      run: |
+        export PIPX_HOME=$HOME/.local/pipx
+        mkdir -p $PIPX_HOME
+        pip install pipx
+        pipx install jupyter
+        pipx runpip jupyter install numpy matplotlib ducc0 healpy
    
     - name: Run notebook directly
       run: |
+        export PIPX_HOME=$HOME/.local/pipx
         pipx run jupyter execute UnitTest/NotebookToTest.ipynb
         
     - name: Convert notebook to script to see logs
