@@ -37,9 +37,9 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-data-${{ github.run_number }}-
        
-    - name: Install dependencies
-      run: | 
-        pip install jupyter tqdm pipx numpy
+    - run: pip install pipx
+    - run: pipx install jupyter
+    - run: pipx runpip jupyter install numpy matplotlib
    
     - name: Run notebook directly
       run: |
