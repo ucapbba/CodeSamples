@@ -33,9 +33,9 @@ jobs:
       uses: actions/cache@v3
       with:
         path: ./data
-        key: ${{ runner.os }}-data-${{ hashFiles('testfile.txt') }}
+        key: ${{ runner.os }}-data-${{ github.run_number }}-${{ hashFiles('testfile.txt') }}
         restore-keys: |
-          ${{ runner.os }}-data-2
+          ${{ runner.os }}-data-${{ github.run_number }}-
        
     - name: Install dependencies
       run: | 
