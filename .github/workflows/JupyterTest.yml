@@ -36,10 +36,10 @@ jobs:
        
     - name: Install dependencies
       run: | 
-        pip install jupyter tqdm
+        pip install jupyter tqdm pipx
    
     - name: Convert notebook to script
       run: |
-        pipx run  jupyter execute UnitTest/NotebookToTest.ipynb
+        pipx run --show-output jupyter execute UnitTest/NotebookToTest.ipynb
 
 
