@@ -1,0 +1,23 @@
+name: AutoRelease
+
+on:
+  push:
+    branches: [ main, release ]
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  update-tag:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v3
+      - name: Get the latest tag
+        id: get_tag
+        run: echo "::set-output name=tag::$(git describe --tags --abbrev=0)"
+      - name: Increment version
+        id: increment_version
+        run: echo "::set-output name=version::$(echo ${{ steps.get_tag.outputs.tag }} | awk -F. '{$NF = $NF + 1;} 1' OFS=.)"
+      - name: Push new tag
+        uses: EndBug/latest-tag@latest
+        with:
+          tag-name: "v${{ steps.increment_version.outputs.version }}"
