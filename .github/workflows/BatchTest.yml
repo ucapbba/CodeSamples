@@ -16,17 +16,19 @@ jobs:
     steps:
       - name: Run Batch File
         run: |
-          cmd /c %BATCH_FILE%
+          cmd /c "
+          %BATCH_FILE%
           timeout /t 5 /nobreak > nul
           if exist result.txt (
             set /p result=<result.txt
             if "%result%"=="true" (
-              echo "Test passed."
+              echo Test passed.
             ) else (
-              echo "Test failed."
+              echo Test failed.
               exit 1
             )
           ) else (
-            echo "Result file not found."
+            echo Result file not found.
             exit 1
           )
+          "
