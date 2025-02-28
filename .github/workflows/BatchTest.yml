@@ -1,0 +1,36 @@
+name: BatchTest
+
+on: 
+  pull_request:
+    branches: [masterTests]
+  push:
+    branches: [masterTests]
+
+env:
+  # Path to the solution file relative to the root of the project.
+  BATCH_FILE: UnitTest/MyBatchFile.bat
+
+jobs:
+  test:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Run Batch File
+        shell: cmd
+        run: |
+          call %BATCH_FILE%
+          timeout /t 5 /nobreak > nul
+          if exist result.txt (
+            powershell -Command "if ((Get-Content result.txt).Trim() -eq 'True') { exit 0 } else { exit 1 }"
+            if %errorlevel%==0 (
+              echo Test passed.
+            ) else (
+              echo Test failed.
+              exit 1
+            )
+          ) else (
+            echo Result file not found.
+            exit 1
+          )

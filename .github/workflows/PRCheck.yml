@@ -1,0 +1,32 @@
+name: PR Format Check
+
+on:
+  pull_request:
+    types: [opened, edited]
+    branches: [masterTests]
+
+
+jobs:
+  check-pr-format:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check out the repository
+      uses: actions/checkout@v2
+
+    - name: Validate PR title and description
+      run: |
+        if [[ ! "${{ github.event.pull_request.title }}" =~ ^INVA- ]]; then
+          echo "Error: PR title must start with 'INVA-'."
+          exit 1
+        fi
+
+        if [[ -z "${{ github.event.pull_request.body }}" ]]; then
+          echo "Error: PR description must not be empty."
+          exit 1
+        fi
+        
+        if [[ ! "${{ github.event.pull_request.head.ref }}" =~ INVA ]]; then
+          echo "Error: Branch name must include 'INVA'."
+          exit 1
+        fi
