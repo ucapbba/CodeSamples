@@ -1,0 +1,32 @@
+name: BatchTest
+
+on: 
+  pull_request:
+    branches: [masterTests]
+  push:
+    branches: [masterTests]
+
+env:
+  # Path to the solution file relative to the root of the project.
+  BATCH_FILE: UnitTest/MyBatchFile.bat
+
+jobs:
+  test:
+    runs-on: windows-latest
+    steps:
+
+      - name: Run Batch File
+        run: |
+          %BATCH_FILE%
+          if exist result.txt (
+            set /p result=<result.txt
+            if "%result%"=="true" (
+              echo "Test passed."
+            ) else (
+              echo "Test failed."
+              exit 1
+            )
+          ) else (
+            echo "Result file not found."
+            exit 1
+          )
