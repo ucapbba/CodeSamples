@@ -23,7 +23,7 @@ jobs:
           call %BATCH_FILE%
           timeout /t 5 /nobreak > nul
           if exist result.txt (
-            for /f "tokens=*" %%i in (result.txt) do set result=%%i
+            set /p result=<result.txt
             if "%result%"=="True" (
               echo Test passed.
             ) else (
