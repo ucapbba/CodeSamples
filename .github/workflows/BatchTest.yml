@@ -19,8 +19,8 @@ jobs:
         run: |
           %BATCH_FILE%
           timeout /t 5 /nobreak > nul
-          if exist result.txt (
-            set /p result=<result.txt
+          if exist UnitTest/result.txt (
+            set /p result=<UnitTest/result.txt
             if "%result%"=="true" (
               echo Test passed.
             ) else (
