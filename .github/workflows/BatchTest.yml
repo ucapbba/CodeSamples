@@ -24,7 +24,7 @@ jobs:
           timeout /t 5 /nobreak > nul
           if exist result.txt (
             set /p result=<result.txt
-            if "%result%"=="true" (
+            if "%result%"=="True" (
               echo Test passed.
             ) else (
               echo Test failed.
