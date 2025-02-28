@@ -3,8 +3,8 @@ name: PR Format Check
 on:
   pull_request:
     types: [opened, edited]
-  pull_request:
     branches: [masterTests]
+
 
 jobs:
   check-pr-format:
