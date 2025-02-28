@@ -2,9 +2,9 @@ name: BatchTest
 
 on: 
   pull_request:
-    branches: [masterTests]
+    branches: [master]
   push:
-    branches: [masterTests]
+    branches: [master]
 
 env:
   # Path to the solution file relative to the root of the project.
@@ -14,10 +14,10 @@ jobs:
   test:
     runs-on: windows-latest
     steps:
-
       - name: Run Batch File
         run: |
-          %BATCH_FILE%
+          cmd /c %BATCH_FILE%
+          timeout /t 5 /nobreak > nul
           if exist result.txt (
             set /p result=<result.txt
             if "%result%"=="true" (
