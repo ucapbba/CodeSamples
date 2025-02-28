@@ -2,9 +2,9 @@ name: BatchTest
 
 on: 
   pull_request:
-    branches: [master]
+    branches: [masterTests]
   push:
-    branches: [master]
+    branches: [masterTests]
 
 env:
   # Path to the solution file relative to the root of the project.
