@@ -23,8 +23,8 @@ jobs:
           call %BATCH_FILE%
           timeout /t 5 /nobreak > nul
           if exist result.txt (
-            set /p result=<result.txt
-            if "%result%"=="True" (
+            powershell -Command "if ((Get-Content result.txt).Trim() -eq 'True') { exit 0 } else { exit 1 }"
+            if %errorlevel%==0 (
               echo Test passed.
             ) else (
               echo Test failed.
