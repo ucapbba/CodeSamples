@@ -15,8 +15,8 @@ jobs:
     runs-on: windows-latest
     steps:
       - name: Run Batch File
+        shell: cmd
         run: |
-          cmd /c "
           %BATCH_FILE%
           timeout /t 5 /nobreak > nul
           if exist result.txt (
@@ -31,4 +31,3 @@ jobs:
             echo Result file not found.
             exit 1
           )
-          "
