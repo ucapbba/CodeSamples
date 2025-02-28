@@ -23,3 +23,8 @@ jobs:
           echo "Error: PR description must not be empty."
           exit 1
         fi
+        
+        if [[ ! "${{ github.event.pull_request.head.ref }}" =~ INVA ]]; then
+          echo "Error: Branch name must include 'INVA'."
+          exit 1
+        fi
