@@ -14,13 +14,16 @@ jobs:
   test:
     runs-on: windows-latest
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
       - name: Run Batch File
         shell: cmd
         run: |
-          %BATCH_FILE%
+          call %BATCH_FILE%
           timeout /t 5 /nobreak > nul
-          if exist UnitTest/result.txt (
-            set /p result=<UnitTest/result.txt
+          if exist UnitTest\result.txt (
+            set /p result=<UnitTest\result.txt
             if "%result%"=="true" (
               echo Test passed.
             ) else (
