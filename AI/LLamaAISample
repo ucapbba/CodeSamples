@@ -1,0 +1,35 @@
+from llama_index.core import VectorStoreIndex, SimpleDirectoryReader
+from llama_index.llms.openai import OpenAI
+
+# Load documents from ./data
+documents = SimpleDirectoryReader(
+    "data/heracles",
+    recursive=True,
+    required_exts=[
+        ".py", ".js", ".ts", ".tsx",
+        ".java", ".go", ".rs",
+        ".cpp", ".c", ".h",
+        ".cs", ".php",
+        ".md", ".txt"
+    ],
+    exclude_hidden=True
+).load_data()
+
+# Set up LLM
+llm = OpenAI(model="gpt-4.1")
+
+# Build index
+index = VectorStoreIndex.from_documents(documents, llm=llm)
+
+# Create query engine
+query_engine = index.as_query_engine()
+
+print("Chat with your documents (type 'exit' to quit)\n")
+
+while True:
+    question = input("You: ")
+    if question.lower() in {"exit", "quit"}:
+        break
+
+    response = query_engine.query(question)
+    print(f"Bot: {response}\n")
