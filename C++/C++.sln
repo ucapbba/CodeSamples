@@ -11,6 +11,12 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MoveSemantics", "MoveSemant
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Regex", "Regex\Regex.vcxproj", "{2134645E-A12D-4143-898F-C2D5C9DE5F4F}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PyBind", "PyBind", "{9B6D7C1A-6E3F-4F0B-9E9C-0B5C6A8F2E77}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PyBindAiry", "PyBind\PyBindAiry\PyBindAiry.vcxproj", "{33B48397-2D59-4D3F-B18C-BF52CC4A3785}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PyBindGetInteger", "PyBind\PyBindGetInteger\PyBindGetInteger.vcxproj", "{4A519CF2-1985-46E5-B701-A3B48E8DE940}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -51,9 +57,29 @@ Global
 		{2134645E-A12D-4143-898F-C2D5C9DE5F4F}.Release|x64.Build.0 = Release|x64
 		{2134645E-A12D-4143-898F-C2D5C9DE5F4F}.Release|x86.ActiveCfg = Release|Win32
 		{2134645E-A12D-4143-898F-C2D5C9DE5F4F}.Release|x86.Build.0 = Release|Win32
+		{33B48397-2D59-4D3F-B18C-BF52CC4A3785}.Debug|x64.ActiveCfg = Debug|x64
+		{33B48397-2D59-4D3F-B18C-BF52CC4A3785}.Debug|x64.Build.0 = Debug|x64
+		{33B48397-2D59-4D3F-B18C-BF52CC4A3785}.Debug|x86.ActiveCfg = Debug|Win32
+		{33B48397-2D59-4D3F-B18C-BF52CC4A3785}.Debug|x86.Build.0 = Debug|Win32
+		{33B48397-2D59-4D3F-B18C-BF52CC4A3785}.Release|x64.ActiveCfg = Release|x64
+		{33B48397-2D59-4D3F-B18C-BF52CC4A3785}.Release|x64.Build.0 = Release|x64
+		{33B48397-2D59-4D3F-B18C-BF52CC4A3785}.Release|x86.ActiveCfg = Release|Win32
+		{33B48397-2D59-4D3F-B18C-BF52CC4A3785}.Release|x86.Build.0 = Release|Win32
+		{4A519CF2-1985-46E5-B701-A3B48E8DE940}.Debug|x64.ActiveCfg = Debug|x64
+		{4A519CF2-1985-46E5-B701-A3B48E8DE940}.Debug|x64.Build.0 = Debug|x64
+		{4A519CF2-1985-46E5-B701-A3B48E8DE940}.Debug|x86.ActiveCfg = Debug|Win32
+		{4A519CF2-1985-46E5-B701-A3B48E8DE940}.Debug|x86.Build.0 = Debug|Win32
+		{4A519CF2-1985-46E5-B701-A3B48E8DE940}.Release|x64.ActiveCfg = Release|x64
+		{4A519CF2-1985-46E5-B701-A3B48E8DE940}.Release|x64.Build.0 = Release|x64
+		{4A519CF2-1985-46E5-B701-A3B48E8DE940}.Release|x86.ActiveCfg = Release|Win32
+		{4A519CF2-1985-46E5-B701-A3B48E8DE940}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{33B48397-2D59-4D3F-B18C-BF52CC4A3785} = {9B6D7C1A-6E3F-4F0B-9E9C-0B5C6A8F2E77}
+		{4A519CF2-1985-46E5-B701-A3B48E8DE940} = {9B6D7C1A-6E3F-4F0B-9E9C-0B5C6A8F2E77}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A4049FF9-DC7D-4D1A-9567-76389B7C83BA}
