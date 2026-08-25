@@ -4,7 +4,10 @@
 #include <algorithm>
 #include <vector>
 #include <iostream>
+#include <string>
+#include <tuple>
 #include "SortPerformance.h"
+using namespace std;
 
 class MyClass {
 public:
@@ -21,6 +24,20 @@ bool IsEven(MyClass mclass)
 
 int main()
 {
+
+    std::vector<std::pair<std::string,double>> clausesOrdered = 
+    {
+      {"banana", 1},
+      {"apple", 4},
+      {"orange", 3}
+    };
+
+
+    std::sort(clausesOrdered.begin(), clausesOrdered.end(),
+        [&](const auto& a, const auto& b) {
+           return a.first < b.first;
+        });
+
 
     //Basic Lambda
      // capture initial_sum by value

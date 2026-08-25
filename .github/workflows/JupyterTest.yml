@@ -1,0 +1,53 @@
+name: JupyterTest
+
+on: 
+  # Triggers the workflow on push or pull request events but only for the main branch
+   push:
+    branches: [main]
+   pull_request:
+    branches: [main]
+    
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v3
+      with:
+        python-version: '3.8'
+
+    - name: Create data directory if it doesn't exist
+      run: |
+        mkdir -p data    
+    
+    - name: Cache data
+      id: cache-data
+      uses: actions/cache@v3
+      with:
+        path: ./data
+        key: ${{ runner.os }}-data-${{ hashFiles('testfile.txt') }}
+        restore-keys: |
+          ${{ runner.os }}-data-2
+       
+    - name: Install dependencies
+      run: | 
+        pip install jupyter nbconvert tqdm
+   
+    - name: Convert notebook to script
+      run: |
+        jupyter nbconvert --to script UnitTest/NotebookToTest.ipynb
+        
+    - name: Print converted script
+      run: |
+        cat UnitTest/NotebookToTest.py
+        
+    - name: Run converted script
+      run: |
+        python UnitTest/NotebookToTest.py
+
+
