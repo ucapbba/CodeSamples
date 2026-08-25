@@ -6,7 +6,9 @@
 #include <iostream>
 #include <string>
 #include <tuple>
+#include "SortPerformance.h"
 using namespace std;
+
 class MyClass {
 public:
     int value; // Integer member
@@ -23,7 +25,7 @@ bool IsEven(MyClass mclass)
 int main()
 {
 
-    std::vector<std::pair<const std::string&,double>> clausesOrdered = 
+    std::vector<std::pair<std::string,double>> clausesOrdered = 
     {
       {"banana", 1},
       {"apple", 4},
@@ -77,6 +79,9 @@ int main()
     else {
         std::cout << "No object with an even value found." << std::endl;
     }
+
+    std::cout << std::endl;
+    RunSortPerformanceExample();
 
     return 0;
 }

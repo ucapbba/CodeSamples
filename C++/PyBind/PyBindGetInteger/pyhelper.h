@@ -2,7 +2,18 @@
 #define PYHELPER_HPP
 #pragma once
 
+// The installed Python distribution only ships release import libraries
+// (no python3xx_d.lib). Temporarily undefine _DEBUG so Python.h doesn't
+// request the debug-suffixed library when building this project in Debug mode.
+#ifdef _DEBUG
+#define PYHELPER_RESTORE_DEBUG
+#undef _DEBUG
+#endif
 #include <Python.h>
+#ifdef PYHELPER_RESTORE_DEBUG
+#define _DEBUG
+#undef PYHELPER_RESTORE_DEBUG
+#endif
 
 class CPyInstance
 {
