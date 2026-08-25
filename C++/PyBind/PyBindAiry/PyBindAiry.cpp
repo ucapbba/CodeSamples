@@ -2,7 +2,20 @@
 //
 
 #include <iostream>
+
+// The installed Python distribution only ships release import libraries
+// (no python3xx_d.lib). Temporarily undefine _DEBUG so Python.h doesn't
+// request the debug-suffixed library when building this project in Debug mode.
+#ifdef _DEBUG
+#define PYBINDAIRY_RESTORE_DEBUG
+#undef _DEBUG
+#endif
 #include <Python.h>
+#ifdef PYBINDAIRY_RESTORE_DEBUG
+#define _DEBUG
+#undef PYBINDAIRY_RESTORE_DEBUG
+#endif
+
 #include <pybind11.h>
 #include <numpy.h>
 #include <complex>
@@ -12,18 +25,14 @@ using namespace std::complex_literals;
 namespace py = pybind11;
 int main()
 {
-	std::string str = "C:/Python/Python39/";
-	std::wstring widestr = std::wstring(str.begin(), str.end());
-	Py_SetPythonHome(widestr.c_str());
-
+	// Py_SetPythonHome is deprecated since Python 3.11; the interpreter can
+	// locate its own installation automatically, so we no longer set it explicitly.
 	pybind11::scoped_interpreter guard{};
 	pybind11::exec("print('hello world')");
 
-    Py_Initialize();
-
-    PyRun_SimpleString("import scipy");
-    py::object SciPy = py::module_::import("scipy.special");
-    py::function airy = SciPy.attr("airy");
+	PyRun_SimpleString("import scipy");
+	py::object SciPy = py::module_::import("scipy.special");
+	py::function airy = SciPy.attr("airy");
 
     //double input
     py::object airyval = airy(1.0);
