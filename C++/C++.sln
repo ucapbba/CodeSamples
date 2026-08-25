@@ -7,7 +7,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LambdaFunctions", "LambdaFu
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "InputOutput", "InputOutput\InputOutput.vcxproj", "{60CD8FE7-EB95-403D-A0E2-5E89188BA387}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Forward", "Forward\Forward.vcxproj", "{1135FA47-DE13-4E20-8EC0-C01BFD96B155}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MoveSemantics", "MoveSemantics\MoveSemantics.vcxproj", "{1135FA47-DE13-4E20-8EC0-C01BFD96B155}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Regex", "Regex\Regex.vcxproj", "{2134645E-A12D-4143-898F-C2D5C9DE5F4F}"
 EndProject

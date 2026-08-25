@@ -4,6 +4,7 @@
 #include <algorithm>
 #include <vector>
 #include <iostream>
+#include "SortPerformance.h"
 
 class MyClass {
 public:
@@ -61,6 +62,9 @@ int main()
     else {
         std::cout << "No object with an even value found." << std::endl;
     }
+
+    std::cout << std::endl;
+    RunSortPerformanceExample();
 
     return 0;
 }
