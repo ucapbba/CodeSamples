@@ -7,6 +7,7 @@
 #include <string>
 #include <tuple>
 #include "SortPerformance.h"
+#include "LambdaLesson.h"
 using namespace std;
 
 class MyClass {
@@ -82,6 +83,11 @@ int main()
 
     std::cout << std::endl;
     RunSortPerformanceExample();
+
+    auto add = [](int a, int b) { return a + b; };
+    int addResult = add(2, 3); // 5
+
+    RunLambdaLesson();
 
     return 0;
 }
