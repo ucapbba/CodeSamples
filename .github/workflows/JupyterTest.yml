@@ -10,8 +10,11 @@ on:
 
 jobs:
   build:
-    runs-on: windows-latest
-
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.9", "3.10", "3.11", "3.12"]
+        
     steps:
     - name: Checkout repository
       uses: actions/checkout@v3
@@ -19,33 +22,38 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v3
       with:
-        python-version: '3.8'
+        python-version: ${{ matrix.python-version }}
 
     - name: Create data directory if it doesn't exist
       run: |
-        mkdir -p data    
+        mkdir -p UnitTest/data    
     
     - name: Cache data
       id: cache-data
       uses: actions/cache@v3
       with:
         path: ./data
-        key: ${{ runner.os }}-data-${{ hashFiles('testfile.txt') }}
+        key: ${{ runner.os }}-data-${{ github.run_number }}-${{ hashFiles('testfile.txt') }}
         restore-keys: |
-          ${{ runner.os }}-data-2
+          ${{ runner.os }}-data-${{ github.run_number }}-
        
-    - name: Install dependencies
-      run: | 
-        pip install jupyter nbconvert tqdm
+    - name: Set PIPX_HOME to a path without spaces
+      run: |
+        export PIPX_HOME=$HOME/.local/pipx
+        mkdir -p $PIPX_HOME
+        pip install pipx
+        pipx install jupyter
+        pipx runpip jupyter install numpy matplotlib ducc0 healpy
    
-    - name: Convert notebook to script
+    - name: Run notebook directly
+      run: |
+        export PIPX_HOME=$HOME/.local/pipx
+        pipx run jupyter execute UnitTest/NotebookToTest.ipynb
+        
+    - name: Convert notebook to script to see logs
       run: |
         jupyter nbconvert --to script UnitTest/NotebookToTest.ipynb
-        
-    - name: Print converted script
-      run: |
-        cat UnitTest/NotebookToTest.py
-        
+      
     - name: Run converted script
       run: |
         python UnitTest/NotebookToTest.py
